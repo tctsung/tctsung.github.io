@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Personal Website</title>
+  
+  <!--
+    Inline CSS is used here to define the look and feel of the website.
+    We use the provided color palette:
+      - Soft pink (#F7CFD8) for the header background.
+      - Light yellow (#F4F8D3) for the body background and About section.
+      - Mint green (#A6F1E0) for link hover effects.
+      - Teal blue (#73C7C7) for default link color.
+  -->
+  <style>
+    /* Enable smooth scrolling for in-page links */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Global body styling */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #F4F8D3; /* Light yellow background */
+      color: #333;
+    }
+
+    /* Sticky header styling */
+    header {
+      position: fixed;       /* Keeps the header fixed at the top */
+      top: 0;
+      width: 100%;
+      background-color: #F7CFD8; /* Soft pink background */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    /* Navigation styling inside the header */
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 1rem;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 1rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #73C7C7; /* Teal blue for links */
+      font-weight: bold;
+    }
+    nav ul li a:hover {
+      color: #A6F1E0; /* Mint green on hover */
+    }
+
+    /* Section styling with enough top padding to account for the fixed header */
+    section {
+      padding: 100px 20px 60px; /* Top padding ensures content isn't hidden under header */
+      min-height: 100vh;
+    }
+
+    /* About section styled as a name card */
+    #about {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-color: #F4F8D3; /* Light yellow for About section */
+    }
+    /* Circular personal image */
+    #about .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%; /* Makes the image circular */
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    /* Additional sections (Resume, Blog, Projects) can use a clean white background.
+       You may further customize these sections as needed. */
+    #resume, #blog, #projects {
+      background-color: #ffffff;
+    }
+
+    /* Responsive design: Adjust navigation for smaller screens */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+      nav ul li {
+        margin: 0.5rem 0;
+      }
+      section {
+        padding: 80px 10px 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky header with navigation links to different sections -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- About Section: Acts as your home page with a name card style layout -->
+  <section id="about">
+    <!-- Personal picture displayed in a circular shape -->
+    <img src="img/me.jpg" alt="My Photo" class="profile-pic">
+    <h1>Your Name</h1>
+    <p>Hi, I'm [Your Name]. I am a passionate developer with a brief summary about my skills and interests. Welcome to my personal website!</p>
+  </section>
+
+  <!-- Resume Section -->
+  <section id="resume">
+    <h2>Resume</h2>
+    <p>Include details about your education, work experience, skills, and achievements here.</p>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog">
+    <h2>Blog</h2>
+    <p>Share your thoughts, updates, or any blog posts here.</p>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <p>Showcase your projects, code samples, or any accomplishments here.</p>
+  </section>
+
+  <!--
+    JavaScript section for additional interactivity.
+    Currently, smooth scrolling is handled by CSS. You can expand this script for more dynamic features if needed.
+  -->
+  <script>
+    // Example: You could add code here to highlight the current section's link in the navigation.
+    // For now, no extra JavaScript is necessary as CSS handles smooth scrolling.
+  </script>
+</body>
+</html>

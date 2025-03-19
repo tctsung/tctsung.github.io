@@ -1,152 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your Personal Website</title>
-  
-  <!--
-    Inline CSS is used here to define the look and feel of the website.
-    We use the provided color palette:
-      - Soft pink (#F7CFD8) for the header background.
-      - Light yellow (#F4F8D3) for the body background and About section.
-      - Mint green (#A6F1E0) for link hover effects.
-      - Teal blue (#73C7C7) for default link color.
-  -->
-  <style>
-    /* Enable smooth scrolling for in-page links */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Global body styling */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #F4F8D3; /* Light yellow background */
-      color: #333;
-    }
-
-    /* Sticky header styling */
-    header {
-      position: fixed;       /* Keeps the header fixed at the top */
-      top: 0;
-      width: 100%;
-      background-color: #F7CFD8; /* Soft pink background */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-    }
-
-    /* Navigation styling inside the header */
-    nav ul {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 1rem;
-      justify-content: center;
-    }
-    nav ul li {
-      margin: 0 1rem;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #73C7C7; /* Teal blue for links */
-      font-weight: bold;
-    }
-    nav ul li a:hover {
-      color: #A6F1E0; /* Mint green on hover */
-    }
-
-    /* Section styling with enough top padding to account for the fixed header */
-    section {
-      padding: 100px 20px 60px; /* Top padding ensures content isn't hidden under header */
-      min-height: 100vh;
-    }
-
-    /* About section styled as a name card */
-    #about {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background-color: #F4F8D3; /* Light yellow for About section */
-    }
-    /* Circular personal image */
-    #about .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%; /* Makes the image circular */
-      object-fit: cover;
-      margin-bottom: 1rem;
-    }
-
-    /* Additional sections (Resume, Blog, Projects) can use a clean white background.
-       You may further customize these sections as needed. */
-    #resume, #blog, #projects {
-      background-color: #ffffff;
-    }
-
-    /* Responsive design: Adjust navigation for smaller screens */
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-      }
-      nav ul li {
-        margin: 0.5rem 0;
-      }
-      section {
-        padding: 80px 10px 40px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Sticky header with navigation links to different sections -->
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#projects">Projects</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Header with navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">Your Name</div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#about" class="active">About</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
 
-  <!-- About Section: Acts as your home page with a name card style layout -->
-  <section id="about">
-    <!-- Personal picture displayed in a circular shape -->
-    <img src="img/me.jpg" alt="My Photo" class="profile-pic">
-    <h1>Your Name</h1>
-    <p>Hi, I'm [Your Name]. I am a passionate developer with a brief summary about my skills and interests. Welcome to my personal website!</p>
-  </section>
+    <!-- Main content area -->
+    <main>
+        <!-- About section (Name card style) -->
+        <section id="about" class="section about">
+            <div class="container">
+                <div class="name-card">
+                    <div class="profile-image">
+                        <img src="img/me.jpg" alt="Your Name">
+                    </div>
+                    <div class="profile-content">
+                        <h1>Your Name</h1>
+                        <h2>Job Title or Tagline</h2>
+                        <p>Welcome to my personal website! I'm a [your profession] passionate about [your interests]. I specialize in [your specialties] and love working on [types of projects you enjoy].</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- Resume Section -->
-  <section id="resume">
-    <h2>Resume</h2>
-    <p>Include details about your education, work experience, skills, and achievements here.</p>
-  </section>
+        <!-- Resume section -->
+        <section id="resume" class="section resume">
+            <div class="container">
+                <h2 class="section-title">Resume</h2>
+                <div class="resume-container">
+                    <!-- Education -->
+                    <div class="resume-section">
+                        <h3>Education</h3>
+                        <div class="resume-item">
+                            <h4>Degree Name</h4>
+                            <p class="resume-meta">University Name • 20XX - 20XX</p>
+                            <p>Brief description of your studies, achievements, or relevant coursework.</p>
+                        </div>
+                        <!-- Add more education items as needed -->
+                    </div>
+                    
+                    <!-- Experience -->
+                    <div class="resume-section">
+                        <h3>Experience</h3>
+                        <div class="resume-item">
+                            <h4>Job Title</h4>
+                            <p class="resume-meta">Company Name • 20XX - Present</p>
+                            <p>Description of your responsibilities, achievements, and the skills you developed.</p>
+                        </div>
+                        <div class="resume-item">
+                            <h4>Previous Job Title</h4>
+                            <p class="resume-meta">Previous Company • 20XX - 20XX</p>
+                            <p>Description of your responsibilities, achievements, and the skills you developed.</p>
+                        </div>
+                        <!-- Add more experience items as needed -->
+                    </div>
+                    
+                    <!-- Skills -->
+                    <div class="resume-section">
+                        <h3>Skills</h3>
+                        <div class="skills-container">
+                            <div class="skill-category">
+                                <h4>Technical Skills</h4>
+                                <ul class="skill-list">
+                                    <li>Skill 1</li>
+                                    <li>Skill 2</li>
+                                    <li>Skill 3</li>
+                                    <li>Skill 4</li>
+                                </ul>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Soft Skills</h4>
+                                <ul class="skill-list">
+                                    <li>Skill 1</li>
+                                    <li>Skill 2</li>
+                                    <li>Skill 3</li>
+                                    <li>Skill 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="download-resume">
+                    <a href="#" class="btn">Download Full Resume</a>
+                </div>
+            </div>
+        </section>
 
-  <!-- Blog Section -->
-  <section id="blog">
-    <h2>Blog</h2>
-    <p>Share your thoughts, updates, or any blog posts here.</p>
-  </section>
+        <!-- Blog section -->
+        <section id="blog" class="section blog">
+            <div class="container">
+                <h2 class="section-title">Blog</h2>
+                <div class="blog-container">
+                    <!-- Blog post -->
+                    <article class="blog-post">
+                        <div class="blog-image">
+                            <div class="placeholder-image"></div>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-date">March 15, 2025</span>
+                            <h3>Blog Post Title</h3>
+                            <p>A brief summary of your blog post. This should be engaging and make readers want to click through to read the full article.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                    
+                    <!-- Blog post -->
+                    <article class="blog-post">
+                        <div class="blog-image">
+                            <div class="placeholder-image"></div>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-date">March 1, 2025</span>
+                            <h3>Another Blog Post Title</h3>
+                            <p>A brief summary of your blog post. This should be engaging and make readers want to click through to read the full article.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                    
+                    <!-- Blog post -->
+                    <article class="blog-post">
+                        <div class="blog-image">
+                            <div class="placeholder-image"></div>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-date">February 15, 2025</span>
+                            <h3>Yet Another Blog Post Title</h3>
+                            <p>A brief summary of your blog post. This should be engaging and make readers want to click through to read the full article.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="view-all">
+                    <a href="#" class="btn">View All Posts</a>
+                </div>
+            </div>
+        </section>
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <p>Showcase your projects, code samples, or any accomplishments here.</p>
-  </section>
+        <!-- Projects section -->
+        <section id="projects" class="section projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-container">
+                    <!-- Project card -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="placeholder-image"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Project Title</h3>
+                            <p>Description of your project. What was your role? What technologies did you use? What was the outcome?</p>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn sm">View Project</a>
+                                <a href="#" class="btn sm">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project card -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="placeholder-image"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Another Project</h3>
+                            <p>Description of your project. What was your role? What technologies did you use? What was the outcome?</p>
+                            <div class="project-tags">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn sm">View Project</a>
+                                <a href="#" class="btn sm">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project card -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="placeholder-image"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Third Project</h3>
+                            <p>Description of your project. What was your role? What technologies did you use? What was the outcome?</p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>Flask</span>
+                                <span>SQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn sm">View Project</a>
+                                <a href="#" class="btn sm">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <!--
-    JavaScript section for additional interactivity.
-    Currently, smooth scrolling is handled by CSS. You can expand this script for more dynamic features if needed.
-  -->
-  <script>
-    // Example: You could add code here to highlight the current section's link in the navigation.
-    // For now, no extra JavaScript is necessary as CSS handles smooth scrolling.
-  </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

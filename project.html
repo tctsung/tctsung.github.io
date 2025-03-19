@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Ching-Tsung (Deron) Tsai</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header with navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">Ching-Tsung (Deron) Tsai 蔡璟聰</div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">About</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="project.html" class="active">Projects</a></li>
+                    <li><a href="vlog.html">Vlog</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content area -->
+    <main>
+        <!-- Projects section -->
+        <section class="section projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-container">
+                    <!-- Project card: LyricChat -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="img/lyricchat.jpg" alt="LyricChat Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>LyricChat</h3>
+                            <p>A RAG Chatbot designed to connect with users emotionally and recommend songs that match their current mood.</p>
+                            <h4>Tools</h4>
+                            <div class="tech-stack">
+                                <span class="tech">Gemini</span>
+                                <span class="tech">Instructor</span>
+                                <span class="tech">Pydantic</span>
+                                <span class="tech">LiteLLM</span>
+                                <span class="tech">Qdrant</span>
+                                <span class="tech">Streamlit</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/tctsung/LyricChat" class="btn sm" target="_blank">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project card: tidytool -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="img/tidytools.jpg" alt="tidytool Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>tidytool</h3>
+                            <p>A self-developed toolkit designed to simplify my life. Features include data cleaning, visualization, preprocessing, exploratory data analysis (EDA), and ML/LLM applications.</p>
+                            <h4>Tools</h4>
+                            <div class="tech-stack">
+                                <span class="tech">Python</span>
+                                <span class="tech">Pandas</span>
+                                <span class="tech">numpy</span>
+                                <span class="tech">pygwalker</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/tctsung/tidytool" class="btn sm" target="_blank">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project card: Neyman-Pearson Classification -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="img/npcs.jpg" alt="Neyman-Pearson Classification Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>Neyman-Pearson Classification via Cost-Sensitive Learning</h3>
+                            <p>An R package implementing a classification algorithm that controls population error for specific classes under a predefined threshold while minimizing overall risk.</p>
+                            <h4>Tools</h4>
+                            <div class="tech-stack">
+                                <span class="tech">R</span>
+                                <span class="tech">tidyverse</span>
+                                <span class="tech">devtools</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://CRAN.R-project.org/package=npcs" class="btn sm" target="_blank">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project card: Personal Website -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="img/website.jpg" alt="Personal Website Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>Personal Website</h3>
+                            <p>A personal website that you're browsing now, built through intuitive "vibe coding".</p>
+                            <h4>Tools</h4>
+                            <div class="tech-stack">
+                                <span class="tech">Thinking-Claude</span>
+                                <span class="tech">Windsurf</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/tctsung/tctsung.github.io" class="btn sm" target="_blank">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project card: Alzheimer's ML Research -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="img/ad.jpg" alt="Alzheimer's ML Research Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>Interpretable machine learning for Alzheimer's disease early detection</h3>
+                            <p>My Master's thesis at NYU GPH's Department of Biostatistics, which earned the Thesis Recognition Award for Innovative Topic or Approach.</p>
+                            <h4>Tools</h4>
+                            <div class="tech-stack">
+                                <span class="tech">python</span>
+                                <span class="tech">XGBoost</span>
+                                <span class="tech">CatBoost</span>
+                                <span class="tech">LightGBM</span>
+                                <span class="tech">Shap</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/tctsung/AD_boosting" class="btn sm" target="_blank">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Ching-Tsung (Deron) Tsai. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

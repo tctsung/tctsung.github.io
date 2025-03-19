@@ -640,6 +640,107 @@ img {
     }
 }
 
+/* Project Section Styles */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.placeholder-image {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #A6F1E0, #73C7C7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+}
+
+.project-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-content h3 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1.4rem;
+}
+
+.project-content p {
+    color: #666;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.project-tools {
+    margin-bottom: 20px;
+}
+
+.project-tools h4 {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.project-tags span {
+    padding: 6px 12px;
+    background-color: #f0f0f0;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    color: #555;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.project-tags span:hover {
+    background-color: #e5e5e5;
+    transform: translateY(-2px);
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+}
+
 /* Vlog Section Styles */
 .vlog-container {
     display: grid;
@@ -773,7 +874,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s;
 }
 
 .vlog-thumbnail:hover img {

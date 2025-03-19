@@ -249,9 +249,18 @@ img {
     border-radius: 3px;
 }
 
+.rotating-titles .im-a {
+    display: inline-block;
+}
+
 .rotating-titles .title.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.im-a-container {
+    display: inline-block;
+    margin-right: 5px;
 }
 
 .profile-content p {
@@ -604,23 +613,111 @@ img {
     }
 }
 
+@media (max-width: 768px) {
+    /* About section fixes */
+    .about-content {
+        text-align: left;
+    }
+    
+    .profile-content h1 {
+        font-size: 1.4rem;
+        text-align: center;
+        margin-bottom: 0;
+    }
+    
+    .rotating-titles {
+        position: relative;
+        font-size: 1.1rem;
+        text-align: left;
+        margin-bottom: 15px;
+        display: block;
+        height: 2.5em; /* Increase height to accommodate both elements */
+    }
+    
+    .im-a-container {
+        display: inline-block;
+        margin-right: 5px;
+        position: relative;
+        z-index: 2; /* Ensure it stays on top */
+    }
+    
+    .rotating-titles .title {
+        position: absolute;
+        left: 3.5em; /* Position after "I'm a" text */
+        top: 0;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .about-content p {
+        text-align: left;
+        font-size: 0.95rem;
+    }
+    
+    .contact-info {
+        text-align: left;
+    }
+    
+    /* Resume section fixes */
+    .timeline {
+        height: 250vh; /* Make timeline much longer on mobile */
+    }
+    
+    .timeline-item.left, .timeline-item.right {
+        right: 0; /* Move all to right on mobile */
+        left: auto;
+    }
+    
+    .timeline-item[style*="top: 0%"] {
+        top: 5% !important;
+    }
+    
+    .timeline-item[style*="top: 25%"] {
+        top: 25% !important;
+    }
+    
+    .timeline-item[style*="top: 50%"] {
+        top: 35% !important; /* NYU moved higher */
+    }
+    
+    .timeline-item[style*="top: 70%"] {
+        top: 75% !important; /* Regeneron moved much lower */
+    }
+    
+    .timeline-item[style*="top: 90%"] {
+        top: 85% !important; /* Chang Gung position restored */
+    }
+    
+    /* Vlog section fixes */
+    .vlog-intro p {
+        font-size: 0.95rem;
+    }
+}
+
 @media (max-width: 576px) {
     .rotating-titles {
         height: 3em;
     }
     
     .rotating-titles .title {
-        left: 5em; /* Keep consistent with desktop */
+        left: 3.5em; /* Be consistent with the previous breakpoint */
         text-align: left;
-        width: calc(100% - 5em);
+        width: calc(100% - 3.5em);
     }
+    
+    /* Add styling for the 'I'm a' text */
+    .im-a {
+        font-size: 1.4rem; /* Make 'I'm a' slightly larger */
+    }
+
     /* Typography */
     .section-title {
         font-size: 2rem;
     }
     
     .profile-content h1 {
-        font-size: 2rem;
+        font-size: 1.8rem; /* Reduced from 2rem to make name smaller */
     }
     
     /* Cards */

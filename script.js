@@ -1,17 +1,43 @@
-// DOM Elements
+// DOM Elements (keep your existing elements)
 const header = document.querySelector('.header');
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const nav = document.querySelector('.nav');
 const navLinks = document.querySelectorAll('.nav a');
 const sections = document.querySelectorAll('.section');
 
-// Mobile Menu Toggle
+// Add this new code for rotating titles
+function setupRotatingTitles() {
+    const titles = document.querySelectorAll('.rotating-titles .title');
+    if (!titles.length) return;
+    
+    let currentIndex = 0;
+    
+    // Set first title as visible initially
+    titles[0].classList.add('visible');
+    
+    // Function to rotate titles
+    function rotateTitles() {
+        // Remove visible class from current title
+        titles[currentIndex].classList.remove('visible');
+        
+        // Move to next title or back to first
+        currentIndex = (currentIndex + 1) % titles.length;
+        
+        // Add visible class to new current title
+        titles[currentIndex].classList.add('visible');
+    }
+    
+    // Set interval for rotation (every 3 seconds)
+    setInterval(rotateTitles, 3000);
+}
+
+// Mobile Menu Toggle (keep your existing code)
 mobileMenuBtn.addEventListener('click', () => {
     mobileMenuBtn.classList.toggle('active');
     nav.classList.toggle('active');
 });
 
-// Close mobile menu when a link is clicked
+// Close mobile menu when a link is clicked (keep your existing code)
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         mobileMenuBtn.classList.remove('active');
@@ -19,7 +45,7 @@ navLinks.forEach(link => {
     });
 });
 
-// Active link highlighting based on scroll position
+// Active link highlighting based on scroll position (keep your existing code)
 function highlightActiveLink() {
     let scrollPosition = window.scrollY;
     
@@ -36,67 +62,36 @@ function highlightActiveLink() {
             });
             
             // Add active class to current section link
-            document.querySelector(`.nav a[href="#${sectionId}"]`).classList.add('active');
+            const activeLink = document.querySelector(`.nav a[href="#${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
         }
     });
 }
 
-// Add scroll event to highlight active links
+// Add scroll event to highlight active links (keep your existing code)
 window.addEventListener('scroll', highlightActiveLink);
 
-// Initialize the active link on page load
+// Initialize on page load (add setupRotatingTitles to your existing code)
 document.addEventListener('DOMContentLoaded', () => {
     highlightActiveLink();
+    setupRotatingTitles(); // Add this line
     
-    // Smooth scroll for anchor links
+    // Smooth scroll for anchor links (complete your truncated code)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             
             const targetId = this.getAttribute('href');
-            
-            if (targetId === '#') return;
+            if (targetId === "#") return;
             
             const targetElement = document.querySelector(targetId);
-            
             if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
+                targetElement.scrollIntoView({
                     behavior: 'smooth'
                 });
             }
         });
     });
 });
-
-// Animation on scroll (simple implementation)
-function animateOnScroll() {
-    const elements = document.querySelectorAll('.section');
-    
-    elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (elementPosition < windowHeight - 100) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }
-    });
-}
-
-// Add initial styles for animations
-window.addEventListener('DOMContentLoaded', () => {
-    const elements = document.querySelectorAll('.section');
-    
-    elements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    // Trigger initial animation check
-    animateOnScroll();
-});
-
-// Add scroll event for animations
-window.addEventListener('scroll', animateOnScroll);

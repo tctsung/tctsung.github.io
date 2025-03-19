@@ -94,4 +94,53 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Vlog filtering functionality
+    const searchInput = document.getElementById('vlog-search');
+    const searchBtn = document.getElementById('search-btn');
+    const filterTags = document.querySelectorAll('.filter-tag');
+    const vlogCards = document.querySelectorAll('.vlog-card');
+
+    // Function to filter vlogs based on search and active tag
+    function filterVlogs() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const activeTag = document.querySelector('.filter-tag.active').getAttribute('data-tag');
+
+        vlogCards.forEach(card => {
+            const title = card.querySelector('h3').innerText.toLowerCase();
+            const tags = card.getAttribute('data-tags').split(',').map(tag => tag.toLowerCase());
+            
+            // Filter by search term
+            const matchesSearch = searchTerm === '' || title.includes(searchTerm);
+            
+            // Filter by tag
+            const matchesTag = activeTag === 'all' || tags.includes(activeTag.toLowerCase());
+            
+            // Show or hide based on both conditions
+            if (matchesSearch && matchesTag) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+
+    // Add event listeners
+    if (searchInput && searchBtn) {
+        // Search functionality
+        searchInput.addEventListener('input', filterVlogs);
+        searchBtn.addEventListener('click', filterVlogs);
+
+        // Tag filtering
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                // Update active tag
+                document.querySelector('.filter-tag.active').classList.remove('active');
+                this.classList.add('active');
+                
+                // Apply filters
+                filterVlogs();
+            });
+        });
+    }
 });

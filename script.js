@@ -140,20 +140,17 @@ function highlightActiveLink() {
 
 // Language settings management
 function setupLanguagePopup() {
-    // Check if user has already selected a language
     const selectedLanguage = localStorage.getItem('preferredLanguage');
     
-    // If no language preference is set, show the popup
+    // Only show the pop-up if no language preference is stored
     if (!selectedLanguage) {
         showLanguagePopup();
     } else {
-        // If they're on a page that doesn't match their preference, redirect them
+        // Ensure the user is on the correct language version of the page
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         if (selectedLanguage === 'zh-TW' && !currentPage.includes('-tw')) {
-            // User prefers Chinese but is on English page, redirect to Chinese version
             redirectToLanguagePage(currentPage, 'zh-TW');
         } else if (selectedLanguage === 'en' && currentPage.includes('-tw')) {
-            // User prefers English but is on Chinese page, redirect to English version
             redirectToLanguagePage(currentPage, 'en');
         }
     }
@@ -164,6 +161,7 @@ function setupLanguagePopup() {
             e.preventDefault();
             const targetPage = this.getAttribute('href');
             const lang = targetPage.includes('-tw') ? 'zh-TW' : 'en';
+            // Store the language preference before redirecting
             localStorage.setItem('preferredLanguage', lang);
             window.location.href = targetPage;
         });
@@ -172,12 +170,18 @@ function setupLanguagePopup() {
 
 // Show language selection popup
 function showLanguagePopup() {
-    // Create popup element
+    // Remove any existing pop-up to prevent duplicates
+    const existingPopup = document.querySelector('.language-popup');
+    if (existingPopup) {
+        existingPopup.remove();
+    }
+
     const popup = document.createElement('div');
     popup.className = 'language-popup';
     popup.innerHTML = `
         <div class="language-popup-content">
             <h2>Language / 語言</h2>
+            <p>Please select your preferred language to continue.</p>
             <ul>
                 <li><a href="#" data-lang="en">English</a></li>
                 <li><a href="#" data-lang="zh-TW">繁體中文</a></li>
@@ -190,16 +194,20 @@ function showLanguagePopup() {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const lang = this.getAttribute('data-lang');
+            // Store the selected language in localStorage
             localStorage.setItem('preferredLanguage', lang);
-            
-            // Redirect to the appropriate language version
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            // Remove the pop-up before redirecting
+            popup.remove();
             redirectToLanguagePage(currentPage, lang);
         });
     });
     
-    // Add popup to page
+    // Append popup and trigger fade-in
     document.body.appendChild(popup);
+    setTimeout(() => {
+        popup.classList.add('visible');
+    }, 10); // Small delay ensures transition works
 }
 
 // Redirect to appropriate language page

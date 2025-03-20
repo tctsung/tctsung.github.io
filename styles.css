@@ -740,7 +740,7 @@ img {
     
     .rotating-titles {
         position: relative;
-        font-size: 1.1rem;
+        font-size: 1.4rem;
         text-align: left;
         margin-bottom: 15px;
         display: block;
@@ -823,7 +823,11 @@ img {
     .im-a {
         font-size: 1.4rem; /* Make 'I'm a' slightly larger */
     }
-
+    /* Adjust offset for Chinese version */
+    html[lang="zh-TW"] .rotating-titles .title {
+        left: 2em; /* reduce the offset to bring the titles closer */
+    }
+    
     /* Typography */
     .section-title {
         font-size: 2rem;

@@ -774,7 +774,7 @@ img {
     
     /* Resume section fixes */
     .timeline {
-        height: 250vh; /* Make timeline much longer on mobile */
+        height: 150vh; /* Make timeline much longer on mobile */
     }
     
     .timeline-item.left, .timeline-item.right {

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vlog - Ching-Tsung (Deron) Tsai</title>
+    <title>旅遊影片 - 蔡璟聰 (Deron Tsai)</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -16,14 +16,14 @@
     <!-- Header with navigation -->
     <header class="header">
         <div class="container">
-            <div class="logo">Ching-Tsung (Deron) Tsai 蔡璟聰</div>
+            <div class="logo">蔡璟聰 (Deron Tsai)</div>
             <nav class="nav">
                 <ul>
-                    <li><a href="index.html">About</a></li>
-                    <li><a href="resume.html">Resume</a></li>
-                    <li><a href="project.html">Projects</a></li>
-                    <li><a href="vlog.html" class="active">Vlog</a></li>
-                    <li class="lang-switch"><a href="vlog-tw.html">中文</a></li>
+                    <li><a href="index-tw.html">關於我</a></li>
+                    <li><a href="resume-tw.html">經歷</a></li>
+                    <li><a href="project-tw.html">個人專案</a></li>
+                    <li><a href="vlog-tw.html" class="active">旅遊影片</a></li>
+                    <li class="lang-switch"><a href="vlog.html">EN</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu-btn">
@@ -39,21 +39,22 @@
         <!-- Vlog section -->
         <section class="section blog">
             <div class="container">
-                <h2 class="section-title">Vlog</h2>
+                <h2 class="section-title">旅遊影片</h2>
                 
                 <div class="vlog-intro">
-                    <p style="font-size: 1.1em;">I've always loved traveling—exploring unseen nature & cultures—thanks to my dad, who dragged us around the world growing up. My mom was the one filming it all, turning those trips into cherished memories, and that's why I started editing with PowerDirector since middle school (now I'm on Premiere Pro, might switch to DaVinci Resolve in the future)</p>
+                    <p style="font-size: 1.1em;">我喜歡旅行、認識不同的文化。從小我爸就帶著我們全家人四處旅行 每次旅行完 我媽都會剪一部影片做紀念 久了我也養成了一樣的習慣</p>
                     
-                    <p style="font-size: 1.1em;">Now, I make vlogs for big & small adventures with family & friends—nothing fancy, maybe boring to outsiders, but it always brings smiles to myself & the crew.</p>                </div>
+                    <p style="font-size: 1.1em;">每次跟家人朋友出去 就會想剪部片紀錄 雖然外人會覺得很無聊 但有一起體會當下的人 都很開心的</p>
+                </div>
                 
                 <!-- Filter options -->
                 <div class="vlog-filters">
                     <div class="search-container">
-                        <input type="text" id="vlog-search" placeholder="Search vlogs...">
-                        <button id="search-btn" class="btn sm">Search</button>
+                        <input type="text" id="vlog-search" placeholder="搜尋影片...">
+                        <button id="search-btn" class="btn sm">搜尋</button>
                     </div>
                     <div class="tags-filter">
-                        <span class="filter-tag active" data-tag="all">All</span>
+                        <span class="filter-tag active" data-tag="all">全部</span>
                         <span class="filter-tag" data-tag="USA">USA</span>
                         <span class="filter-tag" data-tag="Nature">Nature</span>
                         <span class="filter-tag" data-tag="Family">Family</span>
@@ -162,12 +163,12 @@
                     <div class="vlog-card" data-tags="Taiwan,Family,Culture">
                         <div class="vlog-thumbnail">
                             <a href="https://youtu.be/QdXnahz20Lc?si=f-tnBCt4M4AP57uL" target="_blank">
-                                <img src="https://img.youtube.com/vi/QdXnahz20Lc/mqdefault.jpg" alt="台南高雄 三代同堂之旅">
+                                <img src="https://img.youtube.com/vi/QdXnahz20Lc/mqdefault.jpg" alt="Taiwan Trip">
                                 <div class="play-icon"><i class="fas fa-play-circle"></i></div>
                             </a>
                         </div>
                         <div class="vlog-content">
-                            <h3>台南高雄 三代同堂之旅</h3>
+                            <h3>Taiwan Trip</h3>
                             <div class="vlog-tags">
                                 <span class="tag">Taiwan</span>
                                 <span class="tag">Family</span>
@@ -175,43 +176,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Video card: Suzy's Road Trip -->
-                    <div class="vlog-card" data-tags="USA,Friend,Date">
-                        <div class="vlog-thumbnail">
-                            <a href="https://youtu.be/vJZwPRPF5j8?si=U0uh2K3pCM8BY6-c" target="_blank">
-                                <img src="https://img.youtube.com/vi/vJZwPRPF5j8/mqdefault.jpg" alt="Suzy's Road Trip to Cali 2022蘇西加州行">
-                                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                            </a>
-                        </div>
-                        <div class="vlog-content">
-                            <h3>Suzy's Road Trip to Cali 2022蘇西加州行</h3>
-                            <div class="vlog-tags">
-                                <span class="tag">USA</span>
-                                <span class="tag">Friend</span>
-                                <span class="tag">Date</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Video card: Vermont Trip -->
-                    <div class="vlog-card" data-tags="Ski,USA,Friend">
-                        <div class="vlog-thumbnail">
-                            <a href="https://youtu.be/-KJjbYDCyI0?si=Ys9xmDIR8ek8jx0F" target="_blank">
-                                <img src="https://img.youtube.com/vi/-KJjbYDCyI0/mqdefault.jpg" alt="Vermont Thanksgiving Ski Trip 2021感恩節滑雪">
-                                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                            </a>
-                        </div>
-                        <div class="vlog-content">
-                            <h3>Vermont Thanksgiving Ski Trip 2021感恩節滑雪</h3>
-                            <div class="vlog-tags">
-                                <span class="tag">Ski</span>
-                                <span class="tag">USA</span>
-                                <span class="tag">Friend</span>
-                            </div>
-                        </div>
-                    </div>
-                    
+                
                     <!-- Video card: Bear Mountain -->
                     <div class="vlog-card" data-tags="USA,NY,Nature">
                         <div class="vlog-thumbnail">
@@ -229,24 +194,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Video card: Cold Spring -->
-                    <div class="vlog-card" data-tags="USA,NY,Nature">
-                        <div class="vlog-thumbnail">
-                            <a href="https://youtu.be/Sl1Q_cngS80?si=OItwwjq4r7ZevFwE" target="_blank">
-                                <img src="https://img.youtube.com/vi/Sl1Q_cngS80/mqdefault.jpg" alt="Cold Spring NY Day Trip">
-                                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                            </a>
-                        </div>
-                        <div class="vlog-content">
-                            <h3>Cold Spring NY Day Trip</h3>
-                            <div class="vlog-tags">
-                                <span class="tag">USA</span>
-                                <span class="tag">NY</span>
-                                <span class="tag">Nature</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -255,7 +202,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Ching-Tsung (Deron) Tsai. All rights reserved.</p>
+            <p>&copy; 2025 蔡璟聰 (Deron Tsai). 保留所有權利。</p>
         </div>
     </footer>
 

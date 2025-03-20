@@ -1,146 +1,239 @@
-// DOM Elements (keep your existing elements)
-const header = document.querySelector('.header');
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const nav = document.querySelector('.nav');
-const navLinks = document.querySelectorAll('.nav a');
-const sections = document.querySelectorAll('.section');
+// Mobile menu functionality
+function setupMobileMenu() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('.nav');
 
-// Add this new code for rotating titles
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+    }
+}
+
+// Contact form validation
+function setupContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Basic validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                // If validation passes, you would typically send the form data to a server
+                alert('Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+    }
+}
+
+// Rotating titles animation
 function setupRotatingTitles() {
     const titles = document.querySelectorAll('.rotating-titles .title');
-    if (!titles.length) return;
-    
-    let currentIndex = 0;
-    
-    // Set first title as visible initially
-    titles[0].classList.add('visible');
-    
-    // Function to rotate titles
-    function rotateTitles() {
-        // Remove visible class from current title
-        titles[currentIndex].classList.remove('visible');
+    if (titles.length > 0) {
+        let currentIndex = 0;
         
-        // Move to next title or back to first
-        currentIndex = (currentIndex + 1) % titles.length;
+        // Show the first title
+        titles[0].classList.add('visible');
         
-        // Add visible class to new current title
-        titles[currentIndex].classList.add('visible');
+        // Setup the rotation interval
+        setInterval(() => {
+            // Hide current title
+            titles[currentIndex].classList.remove('visible');
+            
+            // Update index to next title (loop back to 0 if at the end)
+            currentIndex = (currentIndex + 1) % titles.length;
+            
+            // Show next title
+            titles[currentIndex].classList.add('visible');
+        }, 3000); // Change every 3 seconds
     }
-    
-    // Set interval for rotation (every 3 seconds)
-    setInterval(rotateTitles, 3000);
 }
 
-// Mobile Menu Toggle (keep your existing code)
-mobileMenuBtn.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    nav.classList.toggle('active');
-});
-
-// Close mobile menu when a link is clicked (keep your existing code)
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenuBtn.classList.remove('active');
-        nav.classList.remove('active');
-    });
-});
-
-// Active link highlighting based on scroll position (keep your existing code)
-function highlightActiveLink() {
-    let scrollPosition = window.scrollY;
+// Vlog filtering functionality
+function setupVlogFilters() {
+    const vlogCards = document.querySelectorAll('.vlog-card');
+    const filterTags = document.querySelectorAll('.filter-tag');
+    const searchInput = document.getElementById('vlog-search');
+    const searchBtn = document.getElementById('search-btn');
     
-    // Loop through sections to find current position
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            // Remove active class from all links
-            navLinks.forEach(link => {
-                link.classList.remove('active');
+    if (vlogCards.length > 0 && filterTags.length > 0) {
+        // Tag filtering
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Update active class
+                filterTags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+                
+                const selectedTag = tag.getAttribute('data-tag');
+                
+                // Filter vlog cards
+                vlogCards.forEach(card => {
+                    if (selectedTag === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const cardTags = card.getAttribute('data-tags').split(',');
+                        if (cardTags.includes(selectedTag)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
             });
-            
-            // Add active class to current section link
-            const activeLink = document.querySelector(`.nav a[href="#${sectionId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
+        });
+        
+        // Search functionality
+        if (searchBtn && searchInput) {
+            searchBtn.addEventListener('click', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                vlogCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const tags = card.getAttribute('data-tags').toLowerCase();
+                    
+                    if (title.includes(searchTerm) || tags.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Reset active tag
+                filterTags.forEach(t => t.classList.remove('active'));
+                document.querySelector('[data-tag="all"]').classList.add('active');
+            });
         }
-    });
+    }
 }
 
-// Add scroll event to highlight active links (keep your existing code)
-window.addEventListener('scroll', highlightActiveLink);
-
-// Initialize on page load (add setupRotatingTitles to your existing code)
-document.addEventListener('DOMContentLoaded', () => {
-    highlightActiveLink();
-    setupRotatingTitles(); // Add this line
+// Add scroll event to highlight active links
+function highlightActiveLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav a');
     
-    // Smooth scroll for anchor links (complete your truncated code)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
+    if (sections.length > 0 && navLinks.length > 0) {
+        const scrollPosition = window.scrollY + 200; // Adjust for better highlight timing
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
             
-            const targetId = this.getAttribute('href');
-            if (targetId === "#") return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
                 });
             }
         });
+    }
+}
+
+// Language settings management
+function setupLanguagePopup() {
+    // Check if user has already selected a language
+    const selectedLanguage = localStorage.getItem('preferredLanguage');
+    
+    // If no language preference is set, show the popup
+    if (!selectedLanguage) {
+        showLanguagePopup();
+    } else {
+        // If they're on a page that doesn't match their preference, redirect them
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        if (selectedLanguage === 'zh-TW' && !currentPage.includes('-tw')) {
+            // User prefers Chinese but is on English page, redirect to Chinese version
+            redirectToLanguagePage(currentPage, 'zh-TW');
+        } else if (selectedLanguage === 'en' && currentPage.includes('-tw')) {
+            // User prefers English but is on Chinese page, redirect to English version
+            redirectToLanguagePage(currentPage, 'en');
+        }
+    }
+
+    // Add event listeners for language switch links
+    document.querySelectorAll('.lang-switch a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetPage = this.getAttribute('href');
+            const lang = targetPage.includes('-tw') ? 'zh-TW' : 'en';
+            localStorage.setItem('preferredLanguage', lang);
+            window.location.href = targetPage;
+        });
     });
+}
 
-    // Vlog filtering functionality
-    const searchInput = document.getElementById('vlog-search');
-    const searchBtn = document.getElementById('search-btn');
-    const filterTags = document.querySelectorAll('.filter-tag');
-    const vlogCards = document.querySelectorAll('.vlog-card');
-
-    // Function to filter vlogs based on search and active tag
-    function filterVlogs() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        const activeTag = document.querySelector('.filter-tag.active').getAttribute('data-tag');
-
-        vlogCards.forEach(card => {
-            const title = card.querySelector('h3').innerText.toLowerCase();
-            const tags = card.getAttribute('data-tags').split(',').map(tag => tag.toLowerCase());
+// Show language selection popup
+function showLanguagePopup() {
+    // Create popup element
+    const popup = document.createElement('div');
+    popup.className = 'language-popup';
+    popup.innerHTML = `
+        <div class="language-popup-content">
+            <h2>Language / 語言</h2>
+            <ul>
+                <li><a href="#" data-lang="en">English</a></li>
+                <li><a href="#" data-lang="zh-TW">繁體中文</a></li>
+            </ul>
+        </div>
+    `;
+    
+    // Add event listeners for language selection
+    popup.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const lang = this.getAttribute('data-lang');
+            localStorage.setItem('preferredLanguage', lang);
             
-            // Filter by search term
-            const matchesSearch = searchTerm === '' || title.includes(searchTerm);
-            
-            // Filter by tag
-            const matchesTag = activeTag === 'all' || tags.includes(activeTag.toLowerCase());
-            
-            // Show or hide based on both conditions
-            if (matchesSearch && matchesTag) {
-                card.classList.remove('hidden');
-            } else {
-                card.classList.add('hidden');
-            }
+            // Redirect to the appropriate language version
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            redirectToLanguagePage(currentPage, lang);
         });
-    }
+    });
+    
+    // Add popup to page
+    document.body.appendChild(popup);
+}
 
-    // Add event listeners
-    if (searchInput && searchBtn) {
-        // Search functionality
-        searchInput.addEventListener('input', filterVlogs);
-        searchBtn.addEventListener('click', filterVlogs);
-
-        // Tag filtering
-        filterTags.forEach(tag => {
-            tag.addEventListener('click', function() {
-                // Update active tag
-                document.querySelector('.filter-tag.active').classList.remove('active');
-                this.classList.add('active');
-                
-                // Apply filters
-                filterVlogs();
-            });
-        });
+// Redirect to appropriate language page
+function redirectToLanguagePage(currentPage, lang) {
+    let newPage;
+    
+    // Default to index if no page is specified
+    if (!currentPage || currentPage === '') {
+        currentPage = 'index.html';
     }
+    
+    // Handle special case for root URL
+    if (currentPage === '/' || currentPage === 'index.html') {
+        newPage = lang === 'zh-TW' ? 'index-tw.html' : 'index.html';
+    } else if (lang === 'zh-TW') {
+        // If current page doesn't have -tw, add it (for English to Chinese)
+        newPage = currentPage.includes('-tw') ? currentPage : currentPage.replace('.html', '-tw.html');
+    } else {
+        // If current page has -tw, remove it (for Chinese to English)
+        newPage = currentPage.includes('-tw') ? currentPage.replace('-tw.html', '.html') : currentPage;
+    }
+    
+    window.location.href = newPage;
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    setupMobileMenu();
+    setupRotatingTitles();
+    setupVlogFilters();
+    setupContactForm();
+    highlightActiveLink();
+    setupLanguagePopup();
 });
+
+// Add scroll event to highlight active links
+window.addEventListener('scroll', highlightActiveLink);

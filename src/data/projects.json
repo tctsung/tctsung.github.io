@@ -1,0 +1,37 @@
+[
+  {
+    "title": "LyricChat",
+    "description": "A RAG Chatbot designed to connect with users emotionally and recommend songs that match their current mood.",
+    "image": "/img/lyricchat.jpg",
+    "tools": ["Gemini", "Instructor", "Pydantic", "LiteLLM", "Qdrant", "Streamlit"],
+    "link": "https://github.com/tctsung/LyricChat"
+  },
+  {
+    "title": "tidytool",
+    "description": "A self-developed toolkit designed to simplify my life. Features include data cleaning, visualization, preprocessing, exploratory data analysis (EDA), and ML/LLM applications.",
+    "image": "/img/tidytools.jpg",
+    "tools": ["Python", "Pandas", "numpy", "pygwalker"],
+    "link": "https://github.com/tctsung/tidytool"
+  },
+  {
+    "title": "Neyman-Pearson Classification via Cost-Sensitive Learning",
+    "description": "An R package implementing a classification algorithm that controls population error for specific classes under a predefined threshold while minimizing overall risk.",
+    "image": "/img/npcs.jpg",
+    "tools": ["R", "tidyverse", "devtools"],
+    "link": "https://CRAN.R-project.org/package=npcs"
+  },
+  {
+    "title": "Personal Website",
+    "description": "A personal website that you're browsing now, built with React + Vite.",
+    "image": "/img/website.jpg",
+    "tools": ["React", "Vite", "Framer Motion"],
+    "link": "https://github.com/tctsung/tctsung.github.io"
+  },
+  {
+    "title": "Interpretable machine learning for Alzheimer's disease early detection",
+    "description": "My Master's thesis at NYU GPH's Department of Biostatistics, which earned the Thesis Recognition Award for Innovative Topic or Approach.",
+    "image": "/img/ad.jpg",
+    "tools": ["python", "XGBoost", "CatBoost", "LightGBM", "Shap"],
+    "link": "https://github.com/tctsung/AD_boosting"
+  }
+]

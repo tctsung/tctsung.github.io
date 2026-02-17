@@ -1,89 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ching-Tsung (Deron) Tsai - Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Header with navigation -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">Ching-Tsung (Deron) Tsai 蔡璟聰</div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html" class="active">About</a></li>
-                    <li><a href="resume.html">Resume</a></li>
-                    <li><a href="project.html">Projects</a></li>
-                    <li><a href="vlog.html">Vlog</a></li>
-                    <li class="lang-switch"><a href="index-tw.html">中文</a></li>
-                </ul>
-            </nav>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main content area -->
-    <main>
-        <!-- About section (Name card style) -->
-        <section class="section about">
-            <div class="container">
-                <div class="name-card">
-                    <div class="profile-image">
-                        <img src="img/me.jpg" alt="Ching-Tsung (Deron) Tsai">
-                    </div>
-                    <div class="profile-content">
-                        <h1>Hello, I'm Ching-Tsung (Deron) </h1>
-                        <h2 class="rotating-titles">
-                            <div class="im-a-container"><span class="im-a">I'm a</span></div> <span class="title visible"><strong>ML Scientist</strong></span>
-                            <span class="title"><strong>Business Intelligence Engineer</strong></span>
-                            <span class="title"><strong>Skiing/Badminton Enthusiast</strong></span>
-                            <span class="title"><strong>Statistics MS</strong></span>
-                            <span class="title"><strong>Biotech BS</strong></span>
-                            <span class="title"><strong>Artist</strong></span>
-                        </h2>
-                        <p>I'm a guy who likes to understand problems before building data-driven solutions. After 3+ years crafting pipelines and ML solutions for big pharma and startups, I'm now part of the Decision Science team at Amazon Ads. When I'm not messing with data, you'll probably find me editing vlogs, carving turns on the slopes, or playing badminton!</p>
-                        <p>I’m open for online <strong>1-on-1 tutoring</strong> (programming, stats) and <strong>consulting</strong> (ML/DS application, biomedical stuff, or interview prep). Feel free to shoot me a DM or email if you're interested!</p>
-                        <div class="social-links">
-                            <a href="https://github.com/tctsung" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="https://www.instagram.com/tsung_pct/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.linkedin.com/in/tctsung" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://medium.com/@tctsung" target="_blank" aria-label="Medium"><i class="fas fa-book"></i></a>
-                            <a href="https://www.youtube.com/@ching-tsungderontsai2750/videos" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        </div>
-                        <div class="contact-info">
-                            <h3>Contact Me</h3>
-                            <p><strong>Personal:</strong> tctsung@nyu.edu</p>
-                            <p><strong>Work:</strong> tctsung@amazon.com</p>
-                            
-                        </div>
-                        <div class="cat-animation">
-                            <img src="img/pipi.png" alt="My cat Pipi" class="cat-image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Ching-Tsung (Deron) Tsai. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ching-Tsung (Deron) Tsai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

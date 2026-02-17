@@ -1,0 +1,53 @@
+{
+  "education": [
+    {
+      "institution": "New York University",
+      "degree": "M.S. in Biostatistics",
+      "dates": "2021.09 - 2023.05",
+      "tags": ["Statistical Inference", "ML", "DL"]
+    },
+    {
+      "institution": "National Chiao Tung University",
+      "degree": "B.S. in Biotech",
+      "dates": "2015.09 - 2019.01",
+      "tags": []
+    }
+  ],
+  "experience": [
+    {
+      "company": "Amazon",
+      "role": "Business Intelligence Engineer",
+      "dates": "2025.04 - Present",
+      "details": null,
+      "tags": ["AWS", "LLM", "ETL", "Causal ML"]
+    },
+    {
+      "company": "Pfizer",
+      "role": "Senior Software Developer",
+      "dates": "2023.10 - 2025.03",
+      "details": "Promoted from Software Developer (2023.10)",
+      "tags": ["ETL", "Python", "R", "Azure", "Airflow"]
+    },
+    {
+      "company": "Mamon11",
+      "role": "Data Science Intern",
+      "dates": "2023.07 - 2023.09",
+      "details": null,
+      "tags": ["SKlearn", "PostgreSQL"]
+    },
+    {
+      "company": "Regeneron",
+      "role": "Bioinformatics Intern",
+      "dates": "2022.06 - 2022.08",
+      "details": null,
+      "tags": ["AWS", "NLP", "Genomics"]
+    },
+    {
+      "company": "Chang Gung Memorial Hospital",
+      "role": "Research Assistant",
+      "dates": "2019.08 - 2021.02",
+      "details": null,
+      "tags": ["survival analysis", "clinical study"]
+    }
+  ]
+}

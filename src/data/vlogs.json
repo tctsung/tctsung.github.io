@@ -1,0 +1,56 @@
+{
+  "intro": "I've always loved traveling—exploring unseen nature & cultures—thanks to my dad, who dragged us around the world growing up. My mom was the one filming it all, turning those trips into cherished memories, and that's why I started editing with PowerDirector since middle school (now I'm on Premiere Pro, might switch to DaVinci Resolve in the future).\n\nNow, I make vlogs for big & small adventures with family & friends—nothing fancy, maybe boring to outsiders, but it always brings smiles to myself & the crew.",
+  "tags": ["All", "USA", "Nature", "Family", "Culture", "Europe", "Taiwan", "Ski", "Friend", "Date", "NY"],
+  "vlogs": [
+    {
+      "youtubeId": "CSCATZFWBT4",
+      "title": "Clear Kayaking in Silver Springs State Park, Florida",
+      "tags": ["Nature", "USA", "Date"]
+    },
+    {
+      "youtubeId": "G-fAqAzVSUI",
+      "title": "Colorado Ski Trip",
+      "tags": ["Ski", "Nature", "USA"]
+    },
+    {
+      "youtubeId": "s4C7VhVPi-8",
+      "title": "Wandering in the Red City- Bologna",
+      "tags": ["Europe", "Culture", "Family"]
+    },
+    {
+      "youtubeId": "zpWURa65fc8",
+      "title": "Milan City Tour",
+      "tags": ["Europe", "Culture", "Family"]
+    },
+    {
+      "youtubeId": "jv52ffHVNn0",
+      "title": "Alaska Family Trip- Resume: Ep2 Paddle to the Symphony",
+      "tags": ["Nature", "USA", "Family"]
+    },
+    {
+      "youtubeId": "QdXnahz20Lc",
+      "title": "台南高雄 三代同堂之旅",
+      "tags": ["Taiwan", "Family", "Culture"]
+    },
+    {
+      "youtubeId": "vJZwPRPF5j8",
+      "title": "Suzy's Road Trip to Cali 2022蘇西加州行",
+      "tags": ["USA", "Friend", "Date"]
+    },
+    {
+      "youtubeId": "-KJjbYDCyI0",
+      "title": "Vermont Thanksgiving Ski Trip 2021感恩節滑雪",
+      "tags": ["Ski", "USA", "Friend"]
+    },
+    {
+      "youtubeId": "1wgix1Hezy0",
+      "title": "Bear Mountain Fall Foliage NY Day Trip",
+      "tags": ["USA", "NY", "Nature"]
+    },
+    {
+      "youtubeId": "Sl1Q_cngS80",
+      "title": "Cold Spring NY Day Trip",
+      "tags": ["USA", "NY", "Nature"]
+    }
+  ]
+}

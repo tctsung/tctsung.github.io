@@ -1,25 +1,72 @@
-/* Resume page — two-column layout from resume.json, with PDF download */
+/* Resume page — vertical timeline, items alternate left/right by position order */
 import { motion } from 'framer-motion'
 import resume from '../data/resume.json'
 import Tag from '../components/Tag'
 
-function Entry({ title, subtitle, dates, details, tags }) {
-  return (
-    <div className="resume-entry">
-      <strong>{title}</strong>
-      <div className="role">{subtitle}</div>
-      <div className="dates">{dates}</div>
-      {details && <div className="details">{details}</div>}
-      {tags?.length > 0 && (
-        <div className="resume-tags">
-          {tags.map(t => <Tag key={t} label={t} />)}
-        </div>
-      )}
-    </div>
-  )
+/* Merge and sort all entries by position */
+function buildTimeline() {
+  const items = [
+    ...resume.education.map(e => ({ ...e, type: 'education', title: e.institution, subtitle: e.degree })),
+    ...resume.experience.map(e => ({ ...e, type: 'experience', title: e.company, subtitle: e.role })),
+  ]
+  items.sort((a, b) => a.position - b.position)
+  // Alternate left/right by order
+  return items.map((item, i) => ({ ...item, side: i % 2 === 0 ? 'right' : 'left' }))
+}
+
+/* Figure out which year markers go before which items */
+function getYearInsertions(items) {
+  const yearSet = new Set(resume.years)
+  const sortedYears = [...yearSet].sort((a, b) => b - a)
+  const map = {}
+  const used = new Set()
+
+  for (const y of sortedYears) {
+    for (const item of items) {
+      const startYear = Math.floor(parseStart(item.dates))
+      const endVal = parseEnd(item.dates)
+      if (startYear <= y && endVal >= y && !used.has(y)) {
+        const pos = item.position
+        if (!map[pos]) map[pos] = []
+        map[pos].push(y)
+        used.add(y)
+        break
+      }
+    }
+  }
+
+  for (const y of sortedYears) {
+    if (used.has(y)) continue
+    let best = items[0], bestDist = Infinity
+    for (const item of items) {
+      const dist = Math.abs(Math.floor(parseStart(item.dates)) - y)
+      if (dist < bestDist) { bestDist = dist; best = item }
+    }
+    if (!map[best.position]) map[best.position] = []
+    map[best.position].push(y)
+    used.add(y)
+  }
+
+  for (const k in map) map[k].sort((a, b) => b - a)
+  return map
+}
+
+function parseStart(dates) {
+  const [y, m] = dates.split(' - ')[0].split('.')
+  return Number(y) + (Number(m) - 1) / 12
+}
+
+function parseEnd(dates) {
+  const e = dates.split(' - ')[1]?.trim()
+  if (!e || e === 'Present') return new Date().getFullYear() + 1
+  const [y, m] = e.split('.')
+  return Number(y) + (Number(m) - 1) / 12
 }
 
 export default function Resume() {
+  const items = buildTimeline()
+  const yearMap = getYearInsertions(items)
+
   return (
     <section className="section">
       <div className="container">
@@ -29,24 +76,44 @@ export default function Resume() {
             Download Resume
           </a>
         </div>
+
+        {/* Legend */}
+        <div className="tl-legend">
+          <span className="tl-legend-item"><span className="tl-legend-dot edu" /> Education</span>
+          <span className="tl-legend-item"><span className="tl-legend-dot exp" /> Experience</span>
+        </div>
+
         <motion.div
-          className="resume-columns"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          className="timeline"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="resume-col education">
-            <h3>🎓 Education</h3>
-            {resume.education.map(e => (
-              <Entry key={e.institution} title={e.institution} subtitle={e.degree} dates={e.dates} tags={e.tags} />
-            ))}
-          </div>
-          <div className="resume-col experience">
-            <h3>💼 Experience</h3>
-            {resume.experience.map(e => (
-              <Entry key={e.company + e.dates} title={e.company} subtitle={e.role} dates={e.dates} details={e.details} tags={e.tags} />
-            ))}
-          </div>
+          {items.map(item => (
+            <div key={item.title + item.dates}>
+              {yearMap[item.position]?.map(y => (
+                <div className="year-marker" key={y}>{y}</div>
+              ))}
+              <div className={`tl-item ${item.side}`}>
+                <div className={`tl-dot ${item.type}`} />
+                <div className={`tl-content ${item.type}`}>
+                  <div className="tl-header">
+                    <strong>{item.title}</strong> | {item.dates}
+                  </div>
+                  <div className="tl-body">
+                    {item.details
+                      ? item.details.split('\n').map((line, i) => <div key={i}>{line}</div>)
+                      : item.subtitle}
+                    {item.tags?.length > 0 && (
+                      <div className={`resume-tags${item.side === 'left' ? ' right-aligned' : ''}`}>
+                        {item.tags.map(t => <Tag key={t} label={t} />)}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

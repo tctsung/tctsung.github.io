@@ -11,9 +11,10 @@ Mandatory rules for any LLM writing code in this repo. Follow exactly.
 | Primary background | `#FFFFFF` (white) |
 | Accent / highlight | `#A6F1E0` (mint green) |
 | Secondary accent | `#73C7C7` (teal blue) |
+| Education accent | `#C5CAE9` (soft lavender) |
 
 - Derive hover states, shadows, and tints from these three.
-- Accessibility: mint green and teal are light colors. Always use dark text (`#1a1a1a` or similar) on top of them. Never place white or light text on these backgrounds.
+- Accessibility: mint green and teal are light colors. Default to dark text (`#1a1a1a` or similar) on top of them. Exception: white text is acceptable on the darker teal (`#73C7C7`) for small UI elements like badges, year markers, and pills where contrast is sufficient.
 - Use the 60-30-10 rule: ~60% white, ~30% mint/teal for sections and accents, ~10% dark for text and contrast elements.
 
 ---
@@ -110,16 +111,18 @@ YouTube video ID is extracted from the URL. Thumbnails are auto-generated via `h
 
 ### resume.json
 
-Rendered as two side-by-side columns: education (left) and experience (right). Each column has its own background tint (e.g. mint green tint for education, teal blue tint for experience) to visually distinguish them. Entries within each column are listed chronologically top-to-bottom (most recent first).
+Rendered as a vertical timeline with a center line. Education entries appear on the left, experience on the right. Year markers (from the `years` array) are shown between items on the center line — only include years that are meaningful (no out-of-range years). Each entry has a `position` field (integer) that controls its order top-to-bottom; this avoids overlap and lets you fine-tune placement without dynamic collision logic.
 
 ```json
 {
+  "years": [2025, 2024, 2023, 2022, 2019],
   "education": [
     {
       "institution": "New York University",
       "degree": "M.S. in Biostatistics",
       "dates": "2021.09 - 2023.05",
-      "tags": ["Statistical Inference", "ML", "DL"]
+      "tags": ["Statistical Inference", "ML", "DL"],
+      "position": 4
     }
   ],
   "experience": [
@@ -128,14 +131,16 @@ Rendered as two side-by-side columns: education (left) and experience (right). E
       "role": "Business Intelligence Engineer",
       "dates": "2025.04 - Present",
       "details": null,
-      "tags": ["AWS", "LLM", "ETL", "Causal ML"]
+      "tags": ["AWS", "LLM", "ETL", "Causal ML"],
+      "position": 1
     },
     {
       "company": "Pfizer",
       "role": "Senior Software Developer",
       "dates": "2023.10 - 2025.03",
-      "details": "Promoted from Software Developer (2023.10)",
-      "tags": ["ETL", "Python", "R", "Azure", "Airflow"]
+      "details": "Senior Software Developer (2024.10 ~)\nSoftware Developer (2023.10 ~)",
+      "tags": ["ETL", "Python", "R", "Azure", "Airflow"],
+      "position": 2
     }
   ]
 }

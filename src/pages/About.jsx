@@ -1,94 +1,74 @@
-/* About page — name card with flip animation, bio, social links */
-import { useState, useEffect } from 'react'
+/* About page — editorial hero, bio, accomplishments, services */
 import { motion } from 'framer-motion'
 
-const titles = [
-  'ML Scientist',
-  'Business Intelligence Engineer',
-  'Skiing/Badminton Enthusiast',
-  'Statistics MS',
-  'Biotech BS',
-  'Artist',
+const accomplishments = [
+  'Developed end-to-end agentic workflows with knowledge graph to orchestrate ads marketing automation',
+  'Built large-scale data pipelines (>20 billion records per week) in pharmaceutical and digital marketing industries',
+  'Published machine learning package focused on imbalanced classification with 10K+ downloads',
+  'Collaborated with marketers, ML researchers, clinicians, bioinformaticians, statisticians, and engineers',
 ]
 
-const socials = [
-  { href: 'https://github.com/tctsung', icon: 'fab fa-github', label: 'GitHub' },
-  { href: 'https://www.instagram.com/tsung_pct/', icon: 'fab fa-instagram', label: 'Instagram' },
-  { href: 'https://www.linkedin.com/in/tctsung', icon: 'fab fa-linkedin', label: 'LinkedIn' },
-  { href: 'https://medium.com/@tctsung', icon: 'fas fa-book', label: 'Medium' },
-  { href: 'https://www.youtube.com/@ching-tsungderontsai2750/videos', icon: 'fab fa-youtube', label: 'YouTube' },
+const links = [
+  { href: 'mailto:tctsung@amazon.com', icon: 'fas fa-building', label: 'Work:', value: 'tctsung@amazon.com' },
+  { href: 'mailto:tctsung@nyu.edu', icon: 'fas fa-envelope', label: 'Personal:', value: 'tctsung@nyu.edu' },
+  { href: 'https://www.linkedin.com/in/tctsung', icon: 'fab fa-linkedin', value: 'linkedin.com/in/tctsung' },
+  { href: 'https://github.com/tctsung', icon: 'fab fa-github', value: '@tctsung' },
+  { href: 'https://www.instagram.com/tsung_pct/', icon: 'fab fa-instagram', value: '@tsung_pct' },
 ]
 
 export default function About() {
-  const [titleIdx, setTitleIdx] = useState(0)
-  const [flipped, setFlipped] = useState(false)
-
-  useEffect(() => {
-    const id = setInterval(() => setTitleIdx(i => (i + 1) % titles.length), 3000)
-    return () => clearInterval(id)
-  }, [])
-
   return (
-    <section className="section">
-      <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Card flip container */}
-          <div className="card-flip-container" onClick={() => setFlipped(f => !f)}>
-            <div className={`card-flip-inner${flipped ? ' flipped' : ''}`}>
-              {/* Front — name card */}
-              <div className="card-front">
-                <div className="name-card">
-                  <div className="profile-image">
-                    <img src="/img/me.jpg" alt="Ching-Tsung (Deron) Tsai" />
-                  </div>
-                  <div className="profile-content">
-                    <h1>Hello, I'm Ching-Tsung (Deron)</h1>
-                    <div className="rotating-titles">
-                      <span className="im-a">I'm a </span>
-                      {titles.map((t, i) => (
-                        <span key={t} className={`title${i === titleIdx ? ' visible' : ''}`}>{t}</span>
-                      ))}
-                    </div>
-                    <p>
-                      I'm a guy who likes to understand problems before building data-driven solutions.
-                      After 3+ years crafting pipelines and ML solutions for big pharma and startups,
-                      I'm now part of the Decision Science team at Amazon Ads. When I'm not messing with data,
-                      you'll probably find me editing vlogs, carving turns on the slopes, or playing badminton!
-                    </p>
-                    <p>
-                      I'm open for online <strong>1-on-1 tutoring</strong> (programming, stats) and{' '}
-                      <strong>consulting</strong> (ML/DS application, biomedical stuff, or interview prep).
-                      Feel free to shoot me a DM or email if you're interested!
-                    </p>
-                    <div className="social-links">
-                      {socials.map(s => (
-                        <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
-                           onClick={e => e.stopPropagation()}>
-                          <i className={s.icon} />
-                        </a>
-                      ))}
-                    </div>
-                    <div className="contact-info">
-                      <h3>Contact Me</h3>
-                      <p><strong>Personal:</strong> tctsung@nyu.edu</p>
-                      <p><strong>Work:</strong> tctsung@amazon.com</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Back — namecard image */}
-              <div className="card-back">
-                <img src="/ref/namecard.png" alt="Name card back" />
-              </div>
+    <>
+      <section className="hero">
+        <div className="hero-content container">
+          <div className="hero-left">
+            <p className="hero-greeting">Welcome to my corner of the internet. I'm a</p>
+            <h1 className="hero-title">1X ML Scientist · Amazon · NYU</h1>
+            <p className="hero-by">by <strong>Ching-Tsung (Deron) Tsai 蔡璟聰</strong></p>
+            <div className="hero-links">
+              {links.map(l => (
+                <a key={l.value} href={l.href} target="_blank" rel="noreferrer">
+                  <i className={l.icon} />
+                  {l.label && <strong>{l.label}</strong>} {l.value}
+                </a>
+              ))}
             </div>
           </div>
-          <p className="flip-hint">Click the card to flip ↻</p>
-        </motion.div>
-      </div>
-    </section>
+          <div className="hero-right">
+            <img src="/img/me.jpg" alt="Deron" />
+          </div>
+        </div>
+      </section>
+
+      <section className="section about-bio">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bio-content"
+          >
+            <p className="bio-text">
+              I like to understand problems before building data-driven solutions.
+              Currently part of the Decision Science team at Amazon Ads.
+              When I'm not building AI agents, you'll find me editing vlogs,
+              carving turns on the slopes, or playing badminton.
+            </p>
+
+            <h3 className="bio-heading">Accomplishments</h3>
+            <ul className="bio-list">
+              {accomplishments.map(a => <li key={a}>{a}</li>)}
+            </ul>
+
+            <h3 className="bio-heading">Services</h3>
+            <ul className="bio-list">
+              <li>Consulting — statistical analysis, agentic workflow builds</li>
+              <li>Tutoring — DS/ML interview prep (English, Chinese, Taiwanese)</li>
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+    </>
   )
 }

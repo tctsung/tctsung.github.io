@@ -75,6 +75,7 @@ Key rules:
 - Vlog and resume data live in `src/data/` as JSON. Pages import and render from these files. Never hardcode this content in JSX.
 - Shared UI (header, footer, nav) must be components -- no copy-paste across pages.
 - Keep assets (images, PDFs) out of `src/` when possible; use `public/` for static files.
+- **Images**: Always put new images in `public/img/`. Run `npx vite build` and they'll appear in `dist/img/`. Never edit `dist/` directly — it gets wiped on each build.
 
 ---
 

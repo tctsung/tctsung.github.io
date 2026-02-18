@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
   line-height: 1.6;
   color: #1a1a1a;
   background-color: #fff;
@@ -66,6 +66,7 @@ img { max-width: 100%; display: block; }
 }
 
 .logo {
+  font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   color: #1a1a1a;
@@ -167,149 +168,234 @@ img { max-width: 100%; display: block; }
   background: #73C7C7;
 }
 
-/* ---------- About / Hero ---------- */
-.hero {
+/* ---------- About Page ---------- */
+
+/* Snow slope — two curvy squiggle lines under text */
+.snow-slope {
+  position: relative;
+  display: inline;
+}
+
+.snow-slope .squiggle {
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 12px;
+  overflow: visible;
+}
+
+.snow-slope .squiggle path {
+  fill: none;
+  stroke: #73C7C7;
+  stroke-linecap: round;
+}
+
+.snow-slope .squiggle path:first-child {
+  stroke-width: 2.5;
+}
+
+.snow-slope .squiggle path:last-child {
+  stroke-width: 1.2;
+  opacity: 0.7;
+}
+
+/* Smiley 3D rotation — two quick spins, then 10s pause */
+.smiley-3d {
+  display: inline-block;
+  color: #1a1a1a;
+  animation: smiley-spin 16s ease-in-out infinite;
+}
+
+@keyframes smiley-spin {
+  0%    { transform: rotateY(0deg); }
+  18.75%  { transform: rotateY(360deg); }   /* first spin done at 3s */
+  25%   { transform: rotateY(360deg); }     /* pause 1s */
+  43.75%  { transform: rotateY(720deg); }   /* second spin done at 7s */
+  100%  { transform: rotateY(720deg); }     /* idle 9s */
+}
+
+.about-page {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 70px 0 60px;
-  background: linear-gradient(170deg, #d4f5ec 0%, #e8faf4 30%, #f0fdfb 55%, #fff 100%);
+  padding: 100px 0 60px;
+  background: linear-gradient(170deg, #e0f7f1 0%, #f0fcf9 30%, #f8fdfb 60%, #fff 100%);
 }
 
-.hero-content {
+.hero-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 50px;
+  margin-bottom: 40px;
 }
 
-.hero-left {
+.hero-photo img {
+  width: 260px;
+  height: auto;
+  border-radius: 16px;
+  object-fit: contain;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.hero-text {
   flex: 1;
-  max-width: 640px;
+  text-align: left;
 }
 
-.hero-greeting {
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: #73C7C7;
-  margin-bottom: 14px;
-  letter-spacing: 0.3px;
-}
-
-.hero-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 3.2rem;
-  font-weight: 700;
-  line-height: 1.15;
+.hero-text h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 800;
   color: #1a1a1a;
-  margin-bottom: 10px;
-  white-space: nowrap;
+  margin-bottom: 20px;
 }
 
-.hero-by {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.05rem;
-  color: #888;
-  margin-bottom: 36px;
-}
-
-.hero-name {
-  color: #1a1a1a;
-  font-weight: 600;
-  font-size: 1.15rem;
-}
-
-.hero-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.hero-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-  color: #555;
-  transition: color 0.2s;
-}
-
-.hero-links a:hover {
-  color: #73C7C7;
-}
-
-.hero-links i {
-  color: #73C7C7;
-  width: 18px;
-  text-align: center;
-}
-
-.hero-right {
-  flex-shrink: 0;
-}
-
-.hero-right img {
-  width: 340px;
-  height: 340px;
-  border-radius: 20px;
-  object-fit: cover;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-}
-
-/* ---------- Bio section ---------- */
-.about-bio {
-  background: #fff;
-}
-
-.bio-content {
-  max-width: 860px;
-}
-
-.bio-text {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem;
+.hero-text .intro {
+  font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
+  font-size: 1.35rem;
   line-height: 1.8;
-  color: #333;
-  margin-bottom: 32px;
+  color: #444;
+  margin-bottom: 20px;
 }
 
-.bio-heading {
-  font-family: 'Poppins', sans-serif;
+.hero-text .intro strong {
+  color: #1a1a1a;
+}
+
+.social-row {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.social-row a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: #f5f5f5;
+  border-radius: 50%;
+  color: #555;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.social-row a:hover {
+  background: #73C7C7;
+  color: #fff;
+}
+
+.contact-box {
+  border-left: 4px solid #73C7C7;
+  background: rgba(166,241,224,0.1);
+  padding: 16px 20px;
+  margin-top: 16px;
+  max-width: 400px;
+}
+
+.contact-box h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.contact-box p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+/* Logos row — centered, bigger */
+.logos-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.org-logo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.org-logo[alt="NYU"] { height: 64px; }
+.org-logo[alt="NCTU"] { height: 70px; }
+
+/* Accomplishments & Services blocks */
+.accomplishments-block,
+.services-block {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px 32px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.accomplishments-block h3,
+.services-block h3 {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
+  font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 14px;
-  margin-top: 28px;
 }
 
-.bio-heading:first-of-type {
-  margin-top: 0;
-}
-
-.bio-list {
+.accomplishments-block ul,
+.services-block ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.bio-list li {
+.accomplishments-block li,
+.services-block li {
   position: relative;
-  padding-left: 22px;
-  margin-bottom: 12px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.05rem;
   color: #444;
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
-.bio-list li::before {
+.accomplishments-block li::before,
+.services-block li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 12px;
+  top: 10px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: #73C7C7;
+}
+
+/* Service groups */
+.service-group {
+  margin-bottom: 16px;
+}
+
+.service-group h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.service-group p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* ---------- Resume Timeline ---------- */
@@ -848,16 +934,19 @@ img { max-width: 100%; display: block; }
     display: flex;
   }
 
-  .hero-content {
-    flex-direction: column-reverse;
-    text-align: center;
-    gap: 30px;
+  .hero-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
-
-  .hero-links { align-items: center; }
-  .hero-right img { width: 200px; height: 200px; }
-  .hero-title { font-size: 1.6rem; white-space: normal; }
-  .hero { padding: 80px 0 40px; }
+  .hero-text { text-align: left; }
+  .hero-text h1 { font-size: 2.6rem; }
+  .hero-text .intro { font-size: 1.1rem; }
+  .hero-photo img { width: 160px; height: 160px; border-radius: 50%; }
+  .social-row { justify-content: flex-start; }
+  .contact-box { margin: 16px 0 0; }
+  .logos-row { gap: 24px; }
+  .org-logo { height: 44px; }
+  .about-page { padding: 80px 0 40px; }
   .logo { font-size: 0.6rem; letter-spacing: 0.8px; }
 
   .nc-facts { grid-template-columns: 1fr; }

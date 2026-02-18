@@ -251,7 +251,7 @@ img { max-width: 100%; display: block; }
 
 .hero-text .intro {
   font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.75rem;
   line-height: 1.8;
   color: #444;
   margin-bottom: 20px;
@@ -307,6 +307,11 @@ img { max-width: 100%; display: block; }
   margin-bottom: 4px;
 }
 
+.contact-standalone {
+  max-width: none;
+  margin-bottom: 24px;
+}
+
 /* Logos row — centered, bigger */
 .logos-row {
   display: flex;
@@ -327,35 +332,47 @@ img { max-width: 100%; display: block; }
 .org-logo[alt="NYU"] { height: 64px; }
 .org-logo[alt="NCTU"] { height: 70px; }
 
-/* Accomplishments & Services blocks */
-.accomplishments-block,
-.services-block {
+/* Two-sided blocks (Accomplishments & Services) */
+.two-sided-block {
+  display: flex;
+  gap: 48px;
   background: #fff;
   border-radius: 12px;
-  padding: 28px 32px;
+  padding: 36px 40px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.05);
   margin-bottom: 24px;
-  text-align: left;
+  align-items: center;
 }
 
-.accomplishments-block h3,
-.services-block h3 {
+.two-sided-left {
+  flex: 0 0 300px;
+  text-align: center;
+}
+
+.two-sided-left h3 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: 400;
   color: #1a1a1a;
-  margin-bottom: 14px;
+  line-height: 1.4;
 }
 
-.accomplishments-block ul,
-.services-block ul {
+.two-sided-left h3 strong {
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+.two-sided-right {
+  flex: 1;
+}
+
+.two-sided-right ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.accomplishments-block li,
-.services-block li {
+.two-sided-right li {
   position: relative;
   padding-left: 20px;
   margin-bottom: 10px;
@@ -365,8 +382,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.65;
 }
 
-.accomplishments-block li::before,
-.services-block li::before {
+.two-sided-right li::before {
   content: '';
   position: absolute;
   left: 0;
@@ -443,6 +459,14 @@ img { max-width: 100%; display: block; }
   position: relative;
   width: 50%;
   padding-bottom: 12px;
+}
+
+.tl-grouped .tl-item {
+  padding-top: 0;
+}
+
+.tl-grouped {
+  margin-top: -6px;
 }
 
 .tl-item.left {
@@ -945,6 +969,13 @@ img { max-width: 100%; display: block; }
   .social-row { justify-content: flex-start; }
   .contact-box { margin: 16px 0 0; }
   .logos-row { gap: 24px; }
+
+  .two-sided-block {
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 20px;
+  }
+  .two-sided-left { flex: none; }
   .org-logo { height: 44px; }
   .about-page { padding: 80px 0 40px; }
   .logo { font-size: 0.6rem; letter-spacing: 0.8px; }

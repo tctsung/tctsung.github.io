@@ -10,43 +10,26 @@ function buildTimeline() {
     ...resume.experience.map(e => ({ ...e, type: 'experience', title: e.company, subtitle: e.role })),
   ]
   items.sort((a, b) => a.position - b.position)
-  // Alternate left/right by order
-  return items.map((item, i) => ({ ...item, side: i % 2 === 0 ? 'right' : 'left' }))
+  return items
 }
 
-/* Figure out which year markers go before which items */
+/* Assign year markers to the item whose start date is closest */
 function getYearInsertions(items) {
-  const yearSet = new Set(resume.years)
-  const sortedYears = [...yearSet].sort((a, b) => b - a)
+  const sortedYears = [...new Set(resume.years)].sort((a, b) => b - a)
   const map = {}
-  const used = new Set()
-
   for (const y of sortedYears) {
-    for (const item of items) {
-      const startYear = Math.floor(parseStart(item.dates))
-      const endVal = parseEnd(item.dates)
-      if (startYear <= y && endVal >= y && !used.has(y)) {
-        const pos = item.position
-        if (!map[pos]) map[pos] = []
-        map[pos].push(y)
-        used.add(y)
-        break
-      }
-    }
-  }
-
-  for (const y of sortedYears) {
-    if (used.has(y)) continue
     let best = items[0], bestDist = Infinity
     for (const item of items) {
-      const dist = Math.abs(Math.floor(parseStart(item.dates)) - y)
-      if (dist < bestDist) { bestDist = dist; best = item }
+      const start = parseStart(item.dates)
+      const end = parseEnd(item.dates)
+      if (start <= y + 1 && end >= y) {
+        const dist = Math.abs(start - y)
+        if (dist < bestDist) { bestDist = dist; best = item }
+      }
     }
     if (!map[best.position]) map[best.position] = []
     map[best.position].push(y)
-    used.add(y)
   }
-
   for (const k in map) map[k].sort((a, b) => b - a)
   return map
 }
@@ -89,8 +72,11 @@ export default function Resume() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          {items.map(item => (
-            <div key={item.title + item.dates}>
+          {items.map((item, i) => {
+            const prev = i > 0 ? items[i - 1] : null
+            const sameGroup = prev && prev.title === item.title
+            return (
+            <div key={item.title + item.dates} className={sameGroup ? 'tl-grouped' : ''}>
               {yearMap[item.position]?.map(y => (
                 <div className="year-marker" key={y}>{y}</div>
               ))}
@@ -113,7 +99,7 @@ export default function Resume() {
                 </div>
               </div>
             </div>
-          ))}
+          )})}
         </motion.div>
       </div>
     </section>

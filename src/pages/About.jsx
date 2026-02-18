@@ -4,6 +4,7 @@ const logos = [
   { src: '/img/amazon_logo.jpg', alt: 'Amazon' },
   { src: '/img/pfizer_logo.svg', alt: 'Pfizer' },
   { src: '/img/nyu_logo.jpg', alt: 'NYU' },
+  { src: '/img/regeneron_logo.svg', alt: 'Regeneron' },
   { src: '/img/nctu_logo.png', alt: 'NCTU' },
 ]
 
@@ -34,7 +35,7 @@ export default function About() {
           <div className="hero-text">
             <h1>Aal Izz Well <span className="smiley-3d">☺︎</span></h1>
             <p className="intro">
-              I'm the <strong>1X ML Scientist, Deron (璟聰)</strong>.
+              I'm <strong>DERON, the 1X ML SCIENTIST</strong> 🤡
               <br />
               When I'm not messing with data or building AI agents to replace myself, you'll find me <span className="snow-slope">carving East Coast powder<svg className="squiggle" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 4 Q25 0,50 4 T100 4 T150 4 T200 4" /><path d="M0 10 Q25 6,50 10 T100 10 T150 10 T200 10" /></svg></span>, editing vlogs, or playing badminton.
             </p>
@@ -44,12 +45,6 @@ export default function About() {
                 <a key={s.icon} href={s.href} target="_blank" rel="noreferrer"><i className={s.icon} /></a>
               ))}
             </div>
-            {/* Contact box */}
-            <div className="contact-box">
-              <h3>Contact Me</h3>
-              <p><strong>Personal:</strong> tctsung@nyu.edu</p>
-              <p><strong>Work:</strong> tctsung@amazon.com</p>
-            </div>
           </div>
         </div>
 
@@ -58,43 +53,63 @@ export default function About() {
           {logos.map(l => <img key={l.alt} src={l.src} alt={l.alt} className="org-logo" />)}
         </div>
 
-        {/* Accomplishments */}
+        {/* Accomplishments — two-sided */}
         <motion.div
-          className="accomplishments-block"
+          className="two-sided-block"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h3>Accomplishments</h3>
-          <ul>
-            {accomplishments.map(a => <li key={a}>{a}</li>)}
-          </ul>
+          <div className="two-sided-left">
+            <h3>Things I have<br /><strong>ACCOMPLISHED</strong></h3>
+          </div>
+          <div className="two-sided-right">
+            <ul>
+              {accomplishments.map(a => <li key={a}>{a}</li>)}
+            </ul>
+          </div>
         </motion.div>
 
-        {/* Services */}
+        {/* Services — two-sided */}
         <motion.div
-          className="services-block"
+          className="two-sided-block"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h3>Services</h3>
-          <div className="service-group">
-            <h4>Consulting</h4>
-            <ul>
-              <li>Building Agentic workflows</li>
-              <li>ML solutions for tabular/text data to replace manual work</li>
-              <li>Study design/Statistical analysis in AdTech & Clinical domains</li>
-            </ul>
+          <div className="two-sided-left">
+            <h3>Problems I can<br /><strong>SOLVE</strong></h3>
           </div>
-          <div className="service-group">
-            <h4>Interview Prep</h4>
-            <ul>
-              <li><strong>Data Scientist</strong> — ML, LLM, A/B Testing</li>
-              <li><strong>Data Engineer</strong> — SQL, Data Modeling</li>
-              <li><strong>Business Analyst</strong> — Data Visualization, Study Design</li>
-            </ul>
+          <div className="two-sided-right">
+            <div className="service-group">
+              <h4>Consulting</h4>
+              <ul>
+                <li>Agentic Workflows: Building custom AI agents for business automation</li>
+                <li>Domain Machine Learning: Tabular and NLP solutions especially for AdTech and Clinical data</li>
+                <li>Statistics: Experimental design, survival analysis, and risk factor identification</li>
+              </ul>
+            </div>
+            <div className="service-group">
+              <h4>Mock Interviews</h4>
+              <ul>
+                <li>Data Scientist: Machine Learning, LLM, A/B Testing</li>
+                <li>Data Engineer: SQL, Data Modeling</li>
+                <li>Business Analyst: Data Visualization, Product Sense</li>
+              </ul>
+            </div>
           </div>
+        </motion.div>
+
+        {/* Contact */}
+        <motion.div
+          className="contact-box contact-standalone"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h3>Contact Me</h3>
+          <p><strong>Personal:</strong> tctsung@nyu.edu</p>
+          <p><strong>Work:</strong> tctsung@amazon.com</p>
         </motion.div>
       </div>
     </section>

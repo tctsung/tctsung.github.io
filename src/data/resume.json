@@ -1,19 +1,21 @@
 {
-  "years": [2025, 2024, 2023, 2022, 2019],
+  "years": [2026, 2025, 2024, 2023, 2022, 2019],
   "education": [
     {
       "institution": "New York University",
       "degree": "M.S. in Biostatistics",
       "dates": "2021.09 - 2023.05",
       "tags": ["Statistical Inference", "ML", "DL"],
-      "position": 5
+      "position": 6,
+      "side": "left"
     },
     {
       "institution": "National Chiao Tung University",
       "degree": "B.S. in Biotech",
       "dates": "2015.09 - 2019.01",
-      "tags": [],
-      "position": 8
+      "tags": ["Python"],
+      "position": 9,
+      "side": "left"
     }
   ],
   "experience": [
@@ -23,7 +25,8 @@
       "dates": "2025.12 - Present",
       "details": null,
       "tags": ["LLM", "GraphDB", "Agent"],
-      "position": 1
+      "position": 1,
+      "side": "left"
     },
     {
       "company": "Amazon",
@@ -31,23 +34,35 @@
       "dates": "2025.04 - 2025.12",
       "details": null,
       "tags": ["ETL", "AWS", "Frontend"],
-      "position": 2
+      "position": 2,
+      "side": "left"
     },
     {
       "company": "Pfizer",
       "role": "Senior Software Developer",
-      "dates": "2023.10 - 2025.03",
-      "details": "Senior Software Developer (2024.10 ~)\nSoftware Developer (2023.10 ~)",
-      "tags": ["ETL", "Python", "R", "Azure", "Airflow"],
-      "position": 3
+      "dates": "2024.10 - 2025.03",
+      "details": null,
+      "tags": ["Airflow", "ETL", "OCR"],
+      "position": 3,
+      "side": "right"
+    },
+    {
+      "company": "Pfizer",
+      "role": "Software Developer",
+      "dates": "2023.10 - 2024.10",
+      "details": null,
+      "tags": ["R", "Azure"],
+      "position": 4,
+      "side": "right"
     },
     {
       "company": "Mamon11",
       "role": "Data Science Intern",
       "dates": "2023.07 - 2023.09",
       "details": null,
-      "tags": ["SKlearn", "PostgreSQL"],
-      "position": 4
+      "tags": ["XGBoost", "Time-series", "PostgreSQL"],
+      "position": 5,
+      "side": "left"
     },
     {
       "company": "Regeneron",
@@ -55,7 +70,8 @@
       "dates": "2022.06 - 2022.08",
       "details": null,
       "tags": ["AWS", "NLP", "Genomics"],
-      "position": 6
+      "position": 7,
+      "side": "right"
     },
     {
       "company": "Chang Gung Memorial Hospital",
@@ -63,7 +79,8 @@
       "dates": "2019.08 - 2021.02",
       "details": null,
       "tags": ["survival analysis", "clinical study"],
-      "position": 7
+      "position": 8,
+      "side": "right"
     }
   ]
 }

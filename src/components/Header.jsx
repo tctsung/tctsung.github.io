@@ -24,7 +24,8 @@ export default function Header() {
             <li><NavLink to="/" end onClick={close}>About</NavLink></li>
             <li><NavLink to="/resume" onClick={close}>Resume</NavLink></li>
             <li><NavLink to="/projects" onClick={close}>Projects</NavLink></li>
-            <li><NavLink to="/blog" onClick={close}>Blog &amp; Vlog</NavLink></li>
+            <li><NavLink to="/blog" onClick={close}>Blog</NavLink></li>
+            <li><NavLink to="/vlog" onClick={close}>Vlog</NavLink></li>
           </ul>
         </nav>
         <div className="mobile-menu-btn" onClick={() => setMenuOpen(v => !v)}>

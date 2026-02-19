@@ -37,7 +37,7 @@ Deployed on GitHub Pages via GitHub Actions (build step runs in CI, output is st
 | Framework | React (Vite) |
 | Styling | CSS Modules or a single global CSS file -- keep it simple |
 | Animations | Framer Motion for component animations (card flip, page transitions); CSS `@keyframes` for lightweight things (running cat) |
-| Markdown | `react-markdown` for rendering blog posts from `.md` files |
+| Markdown | `react-markdown` + `remark-gfm` + `rehype-raw` for blog posts; `react-syntax-highlighter` for code blocks |
 | Fonts | Google Fonts (Poppins) via CDN |
 | Icons | Font Awesome or `react-icons` |
 | Deploy | `gh-pages` branch via GitHub Actions -- Vite builds to static files |
@@ -49,6 +49,10 @@ Deployed on GitHub Pages via GitHub Actions (build step runs in CI, output is st
 ```
 tctsung.github.io/
 ├── public/                  # Static assets served as-is
+│   ├── blogs/               # Blog posts as Markdown (e.g. 20240508_consecutive-numbers-in-sql.md)
+│   │   └── manifest.json    # List of post slugs — update when adding a new post
+│   ├── img/
+│   │   └── blog/            # Blog images organized by slug
 │   └── doc/
 │       └── resume.pdf
 ├── src/
@@ -56,7 +60,9 @@ tctsung.github.io/
 │   ├── pages/               # One component per page
 │   │   ├── About.jsx
 │   │   ├── Resume.jsx
-│   │   ├── BlogVlog.jsx
+│   │   ├── Blog.jsx
+│   │   ├── BlogPost.jsx
+│   │   ├── Vlog.jsx
 │   │   └── Projects.jsx
 │   ├── data/                # JSON data files -- the single source of truth for content
 │   │   ├── vlogs.json
@@ -65,13 +71,13 @@ tctsung.github.io/
 │   ├── styles/              # CSS files
 │   ├── App.jsx              # Router + layout
 │   └── main.jsx             # Entry point
-├── blogs/                   # Blog posts as Markdown files (e.g. 2026-02-17-my-post.md)
+├── docs/                    # Detailed guides for AI and contributors
+│   └── blog-format.md       # Blog markdown format guide
 ├── INSTRUCTIONS.md           # This file
 └── README.md
 ```
 
 Key rules:
-- Blog content lives in `blogs/` as Markdown. Never hardcode blog content in JSX.
 - Vlog and resume data live in `src/data/` as JSON. Pages import and render from these files. Never hardcode this content in JSX.
 - Shared UI (header, footer, nav) must be components -- no copy-paste across pages.
 - Keep assets (images, PDFs) out of `src/` when possible; use `public/` for static files.
@@ -81,12 +87,27 @@ Key rules:
 
 ## Pages
 
-4 main pages in the nav:
+5 main pages in the nav:
 
 1. **About** -- Name card intro, bio, social links. Card flip animation.
 2. **Resume** -- Rendered resume with PDF download link.
-3. **Blog & Vlog** -- Blog posts loaded from `blogs/*.md`; embedded vlogs.
-4. **Demos & Projects** -- Project showcase with screenshots and links.
+3. **Blog** -- Blog posts loaded from `blogs/*.md`.
+4. **Vlog** -- Embedded vlogs from JSON with tag filter + search.
+5. **Demos & Projects** -- Project showcase with screenshots and links.
+
+---
+
+## Blog
+
+Blog posts live in `public/blogs/` as Markdown files. Never hardcode blog content in JSX.
+
+- Naming: `YYYYMMDD_title-in-kebab-case.md` — date is parsed from the filename
+- Each `.md` contains tags (`[tags: ...]`) and a summary above the `---` separator
+- Images go in `public/img/blog/<slug>/`
+- When adding a new post, add its slug to `public/blogs/manifest.json`
+- Comments powered by Giscus (GitHub Discussions), config in `src/pages/BlogPost.jsx`
+
+For the full blog format guide, see `docs/blog-format.md`.
 
 ---
 
@@ -165,11 +186,3 @@ Rendered as a vertical timeline with a center line. Education entries appear on 
 - No inline styles. No duplicated code across pages.
 - English only.
 - Never run interactive CLI commands. Pipe `yes |` or use `<<< "y"` to auto-confirm prompts (e.g. `yes | npm create vite@latest`).
-
----
-
-## Setup Status
-
-- The Vite + React project is already scaffolded at `/tmp/vite-temp`. Copy the scaffolding files (`package.json`, `vite.config.js`, `index.html`, `src/main.jsx`, `src/App.jsx`) into this repo. Do NOT run `npm create vite` again.
-- `src/data/vlogs.json` and `src/data/resume.json` are already created with content extracted from the old HTML pages.
-- After copying scaffolding files, run `npm install` to install dependencies, then build out the pages and components.

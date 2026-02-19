@@ -17,9 +17,9 @@ const socials = [
 ]
 
 const accomplishments = [
-  'Developed end-to-end agentic workflows with knowledge graph to orchestrate ads marketing automation',
-  'Built large-scale data pipelines (>20 billion records per week) in pharmaceutical and digital marketing industries',
-  'Published machine learning package focused on imbalanced classification with 10K+ downloads',
+  <>Developed end-to-end <strong>agentic workflows with knowledge graph</strong> to orchestrate ads marketing automation</>,
+  <>Built large-scale data pipelines (<strong>&gt;20 billion</strong> records per week) in pharmaceutical and digital marketing industries</>,
+  <>Published machine learning package focused on imbalanced classification with <strong>10K+ downloads</strong></>,
   'Collaborated with marketers, ML researchers, clinicians, bioinformaticians, statisticians, and engineers',
 ]
 
@@ -35,9 +35,9 @@ export default function About() {
           <div className="hero-text">
             <h1>Aal Izz Well <span className="smiley-3d">☺︎</span></h1>
             <p className="intro">
-              I'm <strong>DERON, the 1X ML SCIENTIST</strong> 🤡
+              I'm <span className="snow-slope"><strong>DERON, the 1X ML SCIENTIST</strong><svg className="squiggle" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 4 Q25 0,50 4 T100 4 T150 4 T200 4" /><path d="M0 10 Q25 6,50 10 T100 10 T150 10 T200 10" /></svg></span> 🤡
               <br />
-              When I'm not messing with data or building AI agents to replace myself, you'll find me <span className="snow-slope">carving East Coast powder<svg className="squiggle" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 4 Q25 0,50 4 T100 4 T150 4 T200 4" /><path d="M0 10 Q25 6,50 10 T100 10 T150 10 T200 10" /></svg></span>, editing vlogs, or playing badminton.
+              When I'm not messing with data or building AI agents to replace myself, you'll find me carving East Coast powder, editing vlogs, or playing badminton.
             </p>
             {/* Social icons */}
             <div className="social-row">

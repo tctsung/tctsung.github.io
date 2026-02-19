@@ -174,6 +174,7 @@ img { max-width: 100%; display: block; }
 .snow-slope {
   position: relative;
   display: inline;
+  white-space: nowrap;
 }
 
 .snow-slope .squiggle {
@@ -906,26 +907,46 @@ img { max-width: 100%; display: block; }
   font-size: 0.85rem;
 }
 
-/* ---------- Cat Animation ---------- */
-.cat-runner {
+/* ---------- Cat Sneak Animation ---------- */
+.cat-sneak {
   position: fixed;
-  bottom: 16px;
-  left: 0;
-  width: 80px;
-  z-index: 1001;
-  animation: runCat 10s linear infinite;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 9999;
   pointer-events: none;
+  transition: transform 1.2s ease-in-out;
+  mix-blend-mode: multiply;
 }
 
-@keyframes runCat {
-  0%   { transform: translateX(-100px); opacity: 0; }
-  3%   { opacity: 1; }
-  97%  { opacity: 1; }
-  100% { transform: translateX(100vw); opacity: 0; }
+/* Anchored at edges, fully off-screen by default, peek inward when visible */
+.cat-sneak.cat-bottom { bottom: -130px; right: 15%; }
+.cat-sneak.cat-bottom.cat-visible { transform: translateY(-140px); }
+
+.cat-sneak.cat-top { top: -130px; right: 15%; }
+.cat-sneak.cat-top.cat-visible { transform: translateY(200px); }
+
+.cat-sneak.cat-right { top: 50%; right: -130px; margin-top: -60px; }
+.cat-sneak.cat-right.cat-visible { transform: translateX(-140px); }
+
+.cat-sneak.cat-left { top: 50%; left: -130px; margin-top: -60px; }
+.cat-sneak.cat-left.cat-visible { transform: translateX(140px); }
+
+@media (max-width: 768px) {
+  .cat-sneak { width: 80px; height: 80px; }
+  .cat-sneak.cat-bottom { bottom: -90px; right: 10%; }
+  .cat-sneak.cat-bottom.cat-visible { transform: translateY(-100px); }
+  .cat-sneak.cat-top { top: -90px; right: 10%; }
+  .cat-sneak.cat-top.cat-visible { transform: translateY(160px); }
+  .cat-sneak.cat-right { right: -90px; margin-top: -40px; }
+  .cat-sneak.cat-right.cat-visible { transform: translateX(-100px); }
+  .cat-sneak.cat-left { left: -90px; margin-top: -40px; }
+  .cat-sneak.cat-left.cat-visible { transform: translateX(100px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cat-runner { display: none; }
+  .cat-sneak { display: none; }
   .rotating-titles .title { transition: none; }
 }
 

@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 
 const logos = [
-  { src: '/img/amazon_logo.jpg', alt: 'Amazon' },
+  { src: '/img/amazon_logo.webp', alt: 'Amazon' },
   { src: '/img/pfizer_logo.svg', alt: 'Pfizer' },
-  { src: '/img/nyu_logo.jpg', alt: 'NYU' },
+  { src: '/img/nyu_logo.webp', alt: 'NYU' },
   { src: '/img/regeneron_logo.svg', alt: 'Regeneron' },
   { src: '/img/nctu_logo.png', alt: 'NCTU' },
 ]
@@ -30,7 +30,7 @@ export default function About() {
         {/* Hero: photo left, text right */}
         <div className="hero-row">
           <div className="hero-photo">
-            <img src="/img/me.jpg" alt="Deron" />
+            <img src="/img/me.webp" alt="Deron" />
           </div>
           <div className="hero-text">
             <h1>Aal Izz Well <span className="smiley-3d">☺︎</span></h1>

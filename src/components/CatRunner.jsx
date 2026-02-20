@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react'
 
 const cats = [
-  { src: '/img/pipi_cat.jpg', alt: 'Pipi the cat' },
-  { src: '/img/ollie_cat.jpg', alt: 'Ollie the cat' },
+  { src: '/img/pipi_cat.webp', alt: 'Pipi the cat' },
+  { src: '/img/ollie_cat.webp', alt: 'Ollie the cat' },
 ]
 
 // 4 edge positions: bottom, right, top, left

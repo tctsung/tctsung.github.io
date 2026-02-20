@@ -8,7 +8,6 @@ import About from './pages/About'
 import Resume from './pages/Resume'
 import Blog from './pages/Blog'
 import Vlog from './pages/Vlog'
-import Projects from './pages/Projects'
 
 /* Lazy-load BlogPost to keep syntax-highlighter out of the main bundle */
 const BlogPost = lazy(() => import('./pages/BlogPost'))
@@ -24,7 +23,6 @@ export default function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<Suspense fallback={<div className="section"><div className="container">Loading...</div></div>}><BlogPost /></Suspense>} />
           <Route path="/vlog" element={<Vlog />} />
-          <Route path="/projects" element={<Projects />} />
         </Routes>
       </main>
       <Footer />

@@ -4,8 +4,13 @@ import { useParams, Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter/dist/esm/index'
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import sql from 'react-syntax-highlighter/dist/esm/languages/prism/sql'
+import python from 'react-syntax-highlighter/dist/esm/languages/prism/python'
+
+SyntaxHighlighter.registerLanguage('sql', sql)
+SyntaxHighlighter.registerLanguage('python', python)
 
 export default function BlogPost() {
   const { slug } = useParams()

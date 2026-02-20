@@ -38,7 +38,7 @@ Deployed on GitHub Pages via GitHub Actions (build step runs in CI, output is st
 | Styling | CSS Modules or a single global CSS file -- keep it simple |
 | Animations | Framer Motion for component animations (card flip, page transitions); CSS `@keyframes` for lightweight things (running cat) |
 | Markdown | `react-markdown` + `remark-gfm` + `rehype-raw` for blog posts; `react-syntax-highlighter` for code blocks |
-| Fonts | Google Fonts (Poppins) via CDN |
+| Fonts | Google Fonts — **Montserrat** (weights 400–800) as the sole UI font, with **Noto Sans TC** (400, 700) as CJK fallback only. No other font families. |
 | Icons | Font Awesome or `react-icons` |
 | Deploy | `gh-pages` branch via GitHub Actions -- Vite builds to static files |
 
@@ -62,11 +62,11 @@ tctsung.github.io/
 │   │   ├── Resume.jsx
 │   │   ├── Blog.jsx
 │   │   ├── BlogPost.jsx
-│   │   ├── Vlog.jsx
-│   │   └── Projects.jsx
+│   │   └── Vlog.jsx
 │   ├── data/                # JSON data files -- the single source of truth for content
 │   │   ├── vlogs.json
-│   │   └── resume.json
+│   │   ├── resume.json
+│   │   └── projects.json    # Backup only — not rendered; schema: project_name, summary, demo_link, github_link
 │   ├── assets/              # Images, SVGs
 │   ├── styles/              # CSS files
 │   ├── App.jsx              # Router + layout
@@ -81,19 +81,18 @@ Key rules:
 - Vlog and resume data live in `src/data/` as JSON. Pages import and render from these files. Never hardcode this content in JSX.
 - Shared UI (header, footer, nav) must be components -- no copy-paste across pages.
 - Keep assets (images, PDFs) out of `src/` when possible; use `public/` for static files.
-- **Images**: Always put new images in `public/img/`. Run `npx vite build` and they'll appear in `dist/img/`. Never edit `dist/` directly — it gets wiped on each build.
+- **Images**: Always put new images in `public/img/`. Preferred format: **WebP** for photos/screenshots, **SVG** for logos/icons, **PNG** only when WebP produces a larger file (e.g. simple logos with few colors). When adding a new image that isn't already WebP, ask the user whether to convert it. Never edit `dist/` directly — it gets wiped on each build.
 
 ---
 
 ## Pages
 
-5 main pages in the nav:
+4 main pages in the nav:
 
 1. **About** -- Name card intro, bio, social links. Card flip animation.
 2. **Resume** -- Rendered resume with PDF download link.
 3. **Blog** -- Blog posts loaded from `blogs/*.md`.
 4. **Vlog** -- Embedded vlogs from JSON with tag filter + search.
-5. **Demos & Projects** -- Project showcase with screenshots and links.
 
 ---
 
@@ -186,3 +185,10 @@ Rendered as a vertical timeline with a center line. Education entries appear on 
 - No inline styles. No duplicated code across pages.
 - English only.
 - Never run interactive CLI commands. Pipe `yes |` or use `<<< "y"` to auto-confirm prompts (e.g. `yes | npm create vite@latest`).
+
+---
+
+## Performance
+
+- **Load only what you use.** For libraries that support tree-shaking or light builds (e.g. `react-syntax-highlighter`), import only the needed modules/languages — never the full bundle.
+- Lazy-load heavy pages (e.g. `BlogPost`) with `React.lazy` + `Suspense`.

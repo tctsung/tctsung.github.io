@@ -23,7 +23,6 @@ export default function Header() {
           <ul>
             <li><NavLink to="/" end onClick={close}>About</NavLink></li>
             <li><NavLink to="/resume" onClick={close}>Resume</NavLink></li>
-            <li><NavLink to="/projects" onClick={close}>Projects</NavLink></li>
             <li><NavLink to="/blog" onClick={close}>Blog</NavLink></li>
             <li><NavLink to="/vlog" onClick={close}>Vlog</NavLink></li>
           </ul>

@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import CatRunner from './components/CatRunner'
+import ScrollToTop from './components/ScrollToTop'
 import About from './pages/About'
 import Resume from './pages/Resume'
 import Blog from './pages/Blog'
@@ -15,6 +16,7 @@ const BlogPost = lazy(() => import('./pages/BlogPost'))
 export default function App() {
   return (
     <HashRouter>
+      <ScrollToTop />
       <Header />
       <main>
         <Routes>

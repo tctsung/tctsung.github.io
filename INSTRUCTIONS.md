@@ -24,7 +24,7 @@ Mandatory rules for any LLM writing code in this repo. Follow exactly.
 - Clean, modern, minimalist.
 - Responsive: must look good on mobile, tablet, and desktop. Test both viewports.
 - Consistent spacing, typography, and components across all pages.
-- Intuitive navigation with a sticky header.
+- Intuitive navigation with a sticky header and a shared footer "EXPLORE MORE" section.
 
 ---
 
@@ -36,7 +36,7 @@ Deployed on GitHub Pages via GitHub Actions (build step runs in CI, output is st
 |-------|--------|
 | Framework | React (Vite) |
 | Styling | CSS Modules or a single global CSS file -- keep it simple |
-| Animations | Framer Motion for component animations (card flip, page transitions); CSS `@keyframes` for lightweight things (running cat) |
+| Animations | Framer Motion for component animations and page transitions; CSS `@keyframes` for lightweight ambient UI motion (e.g. cats, hover effects) |
 | Markdown | `react-markdown` + `remark-gfm` + `rehype-raw` for blog posts; `react-syntax-highlighter` for code blocks |
 | Fonts | Google Fonts — **Montserrat** (weights 400–800) as the sole UI font, with **Noto Sans TC** (400, 700) as CJK fallback only. No other font families. |
 | Icons | Font Awesome or `react-icons` |
@@ -56,7 +56,7 @@ tctsung.github.io/
 │   └── doc/
 │       └── resume.pdf
 ├── src/
-│   ├── components/          # Reusable UI (Header, Footer, Card, CatAnimation, etc.)
+│   ├── components/          # Reusable UI (Header, Footer, CatRunner, ScrollToTop, etc.)
 │   ├── pages/               # One component per page
 │   │   ├── About.jsx
 │   │   ├── Resume.jsx
@@ -69,7 +69,7 @@ tctsung.github.io/
 │   │   └── projects.json    # Backup only — not rendered; schema: project_name, summary, demo_link, github_link
 │   ├── assets/              # Images, SVGs
 │   ├── styles/              # CSS files
-│   ├── App.jsx              # Router + layout
+│   ├── App.jsx              # Router + layout + shared route behavior
 │   └── main.jsx             # Entry point
 ├── docs/                    # Detailed guides for AI and contributors
 │   └── blog-format.md       # Blog markdown format guide
@@ -80,6 +80,7 @@ tctsung.github.io/
 Key rules:
 - Vlog and resume data live in `src/data/` as JSON. Pages import and render from these files. Never hardcode this content in JSX.
 - Shared UI (header, footer, nav) must be components -- no copy-paste across pages.
+- Route changes should scroll the page to the top via shared router logic, not per-page hacks.
 - Keep assets (images, PDFs) out of `src/` when possible; use `public/` for static files.
 - **Images**: Always put new images in `public/img/`. Preferred format: **WebP** for photos/screenshots, **SVG** for logos/icons, **PNG** only when WebP produces a larger file (e.g. simple logos with few colors). When adding a new image that isn't already WebP, ask the user whether to convert it. Never edit `dist/` directly — it gets wiped on each build.
 
@@ -89,10 +90,15 @@ Key rules:
 
 4 main pages in the nav:
 
-1. **About** -- Name card intro, bio, social links. Card flip animation.
+1. **About** -- Intro hero, bio, social links, accomplishments, services, and contact.
 2. **Resume** -- Rendered resume with PDF download link.
 3. **Blog** -- Blog posts loaded from `blogs/*.md`.
 4. **Vlog** -- Embedded vlogs from JSON with tag filter + search.
+
+Global navigation:
+- Header is sticky on all pages.
+- Footer includes a shared "EXPLORE MORE" navigation component on all pages.
+- Desktop/tablet footer uses 4 equal card-style links; mobile footer uses a compact inline link layout.
 
 ---
 
@@ -171,9 +177,8 @@ Rendered as a vertical timeline with a center line. Education entries appear on 
 
 ## Animations
 
-- Name card flip on the About page (Framer Motion, triggered on hover/click).
-- Small cat running across the page (CSS sprite or lightweight SVG/GIF, <50KB).
 - Subtle page transitions and scroll-triggered fade-ins.
+- Two cats peek from page edges; clicking/tapping them makes them spin and fly away for that appearance only.
 - Respect `prefers-reduced-motion`.
 
 ---

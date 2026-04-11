@@ -1,3 +1,5 @@
+/* About page — hero intro, accomplishments, services, and contact details */
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const logos = [
@@ -23,7 +25,33 @@ const accomplishments = [
   'Collaborated with marketers, ML researchers, clinicians, bioinformaticians, statisticians, and engineers',
 ]
 
+const logoEmail = 'tctsung@nyu.edu'
+
 export default function About() {
+  const [logoContactOpen, setLogoContactOpen] = useState(false)
+  const logoContactRef = useRef(null)
+
+  useEffect(() => {
+    if (!logoContactOpen) return undefined
+
+    const handlePointerDown = event => {
+      if (logoContactRef.current && !logoContactRef.current.contains(event.target)) {
+        setLogoContactOpen(false)
+      }
+    }
+
+    const handleEscape = event => {
+      if (event.key === 'Escape') setLogoContactOpen(false)
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleEscape)
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }, [logoContactOpen])
+
   return (
     <section className="about-page">
       <div className="container">
@@ -35,9 +63,37 @@ export default function About() {
           <div className="hero-text">
             <h1>Aal Izz Well <span className="smiley-3d">☺︎</span></h1>
             <p className="intro">
-              I'm <span className="snow-slope"><strong>DERON, the 1X ML SCIENTIST</strong><svg className="squiggle" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 4 Q25 0,50 4 T100 4 T150 4 T200 4" /><path d="M0 10 Q25 6,50 10 T100 10 T150 10 T200 10" /></svg></span> 🤡
+              I&apos;m <span className="snow-slope"><strong>DERON, the 1.0X ML scientist 🤡</strong><svg className="squiggle" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 4 Q25 0,50 4 T100 4 T150 4 T200 4" /><path d="M0 10 Q25 6,50 10 T100 10 T150 10 T200 10" /></svg></span>  <br/>Powered by Kiro + LangGraph + PyTorch + {' '}
+              <span
+                ref={logoContactRef}
+                className={`inline-contact ${logoContactOpen ? 'is-open' : ''}`}
+                onMouseEnter={() => setLogoContactOpen(true)}
+                onMouseLeave={() => setLogoContactOpen(false)}
+                onBlur={event => {
+                  if (!event.currentTarget.contains(event.relatedTarget)) {
+                    setLogoContactOpen(false)
+                  }
+                }}
+              >
+                <button
+                  type="button"
+                  className="inline-contact-trigger"
+                  aria-expanded={logoContactOpen}
+                  aria-controls="logo-contact-card"
+                  onClick={() => setLogoContactOpen(open => !open)}
+                  onFocus={() => setLogoContactOpen(true)}
+                >
+                  [DM me for logo]
+                </button>
+                <span className="inline-contact-card" id="logo-contact-card" role="note">
+                  <span className="inline-contact-icon" aria-hidden="true">
+                    <i className="fas fa-envelope" />
+                  </span>
+                  <a href={`mailto:${logoEmail}`}>{logoEmail}</a>
+                </span>
+              </span>
               <br />
-              When I'm not messing with data or building AI agents to replace myself, you'll find me carving East Coast powder, editing vlogs, or playing badminton.
+              When I&apos;m not messing with data or building AI agents to replace myself, you&apos;ll find me carving East Coast powder, editing vlogs, or playing badminton.
             </p>
             {/* Social icons */}
             <div className="social-row">
@@ -84,9 +140,9 @@ export default function About() {
             <div className="service-group">
               <h4>Consulting</h4>
               <ul>
-                <li>Agentic Workflows: Building custom AI agents for business automation</li>
-                <li>Domain Machine Learning: Tabular and NLP solutions especially for AdTech and Clinical data</li>
-                <li>Statistics: Experimental design, survival analysis, and risk factor identification</li>
+                <li>Efficient ML: build LLM &amp; ML systems that minimize cost while maximizing performance under real-world constraints</li>
+                <li>Agentic Automation: replace manual work with AI-driven automation for fast, consistent execution</li>
+                <li>Data insights: turn data into clear understanding for more objective decision-making, especially in AdTech and clinical domains</li>
               </ul>
             </div>
             <div className="service-group">

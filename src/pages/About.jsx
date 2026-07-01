@@ -19,10 +19,18 @@ const socials = [
 ]
 
 const accomplishments = [
-  <>Developed end-to-end <strong>agentic workflows with knowledge graph</strong> to orchestrate ads marketing automation</>,
-  <>Built large-scale data pipelines (<strong>&gt;20 billion</strong> records per week) in pharmaceutical and digital marketing industries</>,
-  <>Published machine learning package focused on imbalanced classification with <strong>10K+ downloads</strong></>,
-  'Collaborated with marketers, ML researchers, clinicians, bioinformaticians, statisticians, and engineers',
+  <>Fine-tuned Qwen-2.5 with Direct Preference Optimization to cut production RAG cost &amp; latency by <strong>21%</strong> while preserving response quality</>,
+  <>Built an agentic pipeline (ReAct + self-reflection) that turned <strong>5,400+</strong> webpages into an Ads Knowledge Graph — the primary knowledge base for 5 research scientists</>,
+  <>Engineered large-scale data pipelines processing <strong>2B+</strong> records per week across pharma and digital marketing</>,
+  <>Published an ML package (<strong>npcs</strong>, on CRAN) for imbalanced classification with <strong>10K+ downloads</strong></>,
+  <>Shipped ML end-to-end across <strong>AdTech, Clinical, Marketing, and Music</strong> — with marketers, ML researchers, clinicians, statisticians, and engineers</>,
+]
+
+const projects = [
+  { name: 'LyricChat', href: 'https://github.com/tctsung/LyricChat', desc: <>Agentic RAG chatbot recommending mood-matching songs — placed <strong>top-10</strong> on StreetVoice</> },
+  { name: 'free-lunch-ai', href: 'https://github.com/tctsung/free-lunch-ai', desc: 'Unified free-tier LLM router — YAML model configs with automatic provider fallback' },
+  { name: 'nanoclaw-free', href: 'https://github.com/tctsung/nanoclaw-free', desc: 'Run containerized personal AI agents on free models — no paid API key needed' },
+  { name: 'npcs', href: 'https://cran.r-project.org/package=npcs', desc: 'Neyman-Pearson imbalanced classification, published on CRAN' },
 ]
 
 const logoEmail = 'tctsung@nyu.edu'
@@ -63,7 +71,7 @@ export default function About() {
           <div className="hero-text">
             <h1>Aal Izz Well <span className="smiley-3d">☺︎</span></h1>
             <p className="intro">
-              I&apos;m <span className="snow-slope"><strong>DERON, the 1.0X ML scientist 🤡</strong><svg className="squiggle" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 4 Q25 0,50 4 T100 4 T150 4 T200 4" /><path d="M0 10 Q25 6,50 10 T100 10 T150 10 T200 10" /></svg></span>  <br/>Powered by Kiro + LangGraph + PyTorch + {' '}
+              I&apos;m <span className="snow-slope"><strong>Deron, the 1.0X ML scientist 🤡</strong><svg className="squiggle" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 4 Q25 0,50 4 T100 4 T150 4 T200 4" /><path d="M0 10 Q25 6,50 10 T100 10 T150 10 T200 10" /></svg></span> <br/>Powered by Kiro + LangGraph + PyTorch + {' '}
               <span
                 ref={logoContactRef}
                 className={`inline-contact ${logoContactOpen ? 'is-open' : ''}`}
@@ -92,6 +100,8 @@ export default function About() {
                   <a href={`mailto:${logoEmail}`}>{logoEmail}</a>
                 </span>
               </span>
+              <br />
+              I build LLM &amp; ML systems that are cheap, fast, and actually ship.
               <br />
               When I&apos;m not messing with data or building AI agents to replace myself, you&apos;ll find me carving East Coast powder, editing vlogs, or playing badminton.
             </p>
@@ -123,6 +133,28 @@ export default function About() {
             <ul>
               {accomplishments.map(a => <li key={a}>{a}</li>)}
             </ul>
+          </div>
+        </motion.div>
+
+        {/* Projects — two-sided */}
+        <motion.div
+          className="two-sided-block"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <div className="two-sided-left">
+            <h3>Things I have<br /><strong>BUILT</strong></h3>
+          </div>
+          <div className="two-sided-right">
+            <div className="project-grid">
+              {projects.map(p => (
+                <a key={p.name} className="project-card" href={p.href} target="_blank" rel="noreferrer">
+                  <span className="project-name">{p.name} <i className="fas fa-arrow-up-right-from-square" /></span>
+                  <span className="project-desc">{p.desc}</span>
+                </a>
+              ))}
+            </div>
           </div>
         </motion.div>
 

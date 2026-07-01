@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import CatRunner from './components/CatRunner'
 import ScrollToTop from './components/ScrollToTop'
+import IntroCurtain from './components/IntroCurtain'
 import About from './pages/About'
 import Resume from './pages/Resume'
 import Blog from './pages/Blog'
@@ -29,6 +30,7 @@ export default function App() {
       </main>
       <Footer />
       <CatRunner />
+      <IntroCurtain />
     </HashRouter>
   )
 }

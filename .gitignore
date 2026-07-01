@@ -1,4 +1,21 @@
+# Dependencies & build output
 node_modules
 dist
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Logs & caches
+*.log
+npm-debug.log*
+.vite/
+
+# OS & editor cruft
 .DS_Store
 Ref/
+
+# /brag skill scratch dir — video source, QA snapshots, and a duplicate of the
+# deployed public/video/brag.mp4. Regenerable; not needed in the repo.
+brag-output/

@@ -1,5 +1,5 @@
 ---
-title: "Einops Cheatsheet"
+title: "Einops Basics & Tensor Stride"
 date: "2026-06-23"
 tags: ["einops", "pytorch", "deep-learning"]
 summary: "A practical guide to tensor layout, stride, rearrange, reduce, repeat, and shape intuition."
@@ -227,6 +227,7 @@ rearrange(ims, "b h w c -> h (w b) c")  # b fast -> width look overlapping
 ```
 <img src="/img/blog/20260623_einops-cheatsheet/order-axes-batch-fast.png" alt="Einops batch axis changes quickly, interleaving image columns" width="515" />
 - decompose then recompose: 
+
 ```python
 # ims = 6 images "e", "i", "n", "o", "p", "s"
 

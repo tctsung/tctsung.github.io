@@ -1,7 +1,7 @@
 [
   {
     "slug": "einops-cheatsheet",
-    "title": "Einops Cheatsheet",
+    "title": "Einops Basics & Tensor Stride",
     "date": "2026-06-23",
     "tags": ["einops", "pytorch", "deep-learning"],
     "summary": "A practical guide to tensor layout, stride, rearrange, reduce, repeat, and shape intuition.",

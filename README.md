@@ -18,3 +18,15 @@ Check [INSTRUCTIONS.md](INSTRUCTIONS.md) for the well-designed system prompt use
 npm install
 npm run dev
 ```
+
+## Add a Blog Post
+
+**Manual** — write `.md` directly:
+1. Create `public/blogs/YYYYMMDD_title-in-kebab-case.md` with YAML frontmatter (title, date, tags, summary)
+2. Add `{"slug": "YYYYMMDD_title-in-kebab-case"}` to `public/blogs/manifest.json`
+3. Commit
+
+**From Obsidian** — publish a note programmatically:
+1. Add entry to `docs/obsidian-posts.json` with `sourcePath` pointing to your vault note
+2. `npm run publish:obsidian`
+3. Commit generated `public/blogs/*.md` and `public/img/blog/` assets

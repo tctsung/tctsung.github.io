@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Tag from '../components/Tag'
+import { parseBlogPost } from '../utils/blogMeta'
 
 export default function Blog() {
   const [posts, setPosts] = useState([])
@@ -17,7 +18,7 @@ export default function Blog() {
           try {
             const res = await fetch(`${import.meta.env.BASE_URL}blogs/${entry.slug}.md`)
             const text = await res.text()
-            return { ...entry, ...parseFrontContent(text, entry.slug) }
+            return { ...entry, ...parseBlogPost(text, entry.slug) }
           } catch { return null }
         }))
       })
@@ -39,6 +40,14 @@ export default function Blog() {
     <section className="section">
       <div className="container">
         <h2 className="section-title">Blog</h2>
+        <div className="blog-notes-note">
+          <p>
+            Some posts are polished from my Obsidian notes. Selected snapshots are published here; the working notes live in{' '}
+            <a href="https://github.com/tctsung/obsidian_notes" target="_blank" rel="noreferrer">
+              tctsung/obsidian_notes
+            </a>.
+          </p>
+        </div>
 
         <div className="vlog-filters">
           <div className="search-container">
@@ -81,36 +90,4 @@ export default function Blog() {
       </div>
     </section>
   )
-}
-
-/* Parse title, tags, summary, and date from markdown front content */
-function parseFrontContent(md, slug) {
-  const lines = md.split('\n')
-  let title = slug, tags = [], summaryLines = [], titleFound = false
-
-  for (const line of lines) {
-    const trimmed = line.trim()
-    if (!titleFound && trimmed.startsWith('# ')) {
-      title = trimmed.replace(/^#\s+/, '')
-      titleFound = true
-      continue
-    }
-    if (titleFound) {
-      if (trimmed === '---') break
-      /* Parse [tags: a, b, c] */
-      const tagMatch = trimmed.match(/^\[tags:\s*(.+)\]$/)
-      if (tagMatch) {
-        tags = tagMatch[1].split(',').map(t => t.trim()).filter(Boolean)
-        continue
-      }
-      if (trimmed) summaryLines.push(trimmed)
-    }
-  }
-
-  const dateStr = slug.match(/^(\d{4})(\d{2})(\d{2})/)
-  const date = dateStr
-    ? new Date(+dateStr[1], +dateStr[2] - 1, +dateStr[3]).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
-    : ''
-
-  return { title, tags, summary: summaryLines.join(' '), date }
 }

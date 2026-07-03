@@ -1,0 +1,36 @@
+[
+  {
+    "slug": "einops-cheatsheet",
+    "title": "Einops Cheatsheet",
+    "date": "2026-06-23",
+    "tags": ["einops", "pytorch", "deep-learning"],
+    "summary": "A practical guide to tensor layout, stride, rearrange, reduce, repeat, and shape intuition.",
+    "sourcePath": "/Users/tsung_macbook/code/obsidian_notes/DL & ML/framework/einops/Tensor and einops.md",
+    "assets": {
+      "Pasted image 20260602213944.png": {
+        "fileName": "order-axes-batch-slow.png",
+        "alt": "Einops batch axis changes slowly, laying images side by side"
+      },
+      "Pasted image 20260602213901.png": {
+        "fileName": "order-axes-batch-fast.png",
+        "alt": "Einops batch axis changes quickly, interleaving image columns"
+      },
+      "Pasted image 20260622164320.png": {
+        "fileName": "normalize-original.png",
+        "alt": "Original batch of einops letter images before per-image normalization"
+      },
+      "Pasted image 20260622164337.png": {
+        "fileName": "normalize-normalized.png",
+        "alt": "Einops letter images after per-image normalization"
+      }
+    }
+  },
+  {
+    "slug": "tool-calling-mental-model",
+    "title": "Tool Calling Mental Model",
+    "date": "2025-12-27",
+    "tags": ["llm", "agents", "tool-calling"],
+    "summary": "A compact mental model for how LLM tool calling works, from tool schemas in context to parsed calls, tool messages, and the reasoning loop.",
+    "sourcePath": "/Users/tsung_macbook/code/obsidian_notes/LLM & NLP/knowledge/ToolCalling Mental Model.md"
+  }
+]

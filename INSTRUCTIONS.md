@@ -35,11 +35,11 @@ Deployed on GitHub Pages via GitHub Actions (build step runs in CI, output is st
 | Layer | Choice |
 |-------|--------|
 | Framework | React (Vite) |
-| Styling | CSS Modules or a single global CSS file -- keep it simple |
+| Styling | Single global CSS file |
 | Animations | Framer Motion for component animations and page transitions; CSS `@keyframes` for lightweight ambient UI motion (e.g. cats, hover effects) |
 | Markdown | `react-markdown` + `remark-gfm` + `rehype-raw` for blog posts; `react-syntax-highlighter` for code blocks |
 | Fonts | Google Fonts — **Montserrat** (weights 400–800) as the sole UI font, with **Noto Sans TC** (400, 700) as CJK fallback only. No other font families. |
-| Icons | Font Awesome or `react-icons` |
+| Icons | Font Awesome (CDN) |
 | Deploy | `gh-pages` branch via GitHub Actions -- Vite builds to static files |
 
 ---
@@ -50,11 +50,13 @@ Deployed on GitHub Pages via GitHub Actions (build step runs in CI, output is st
 tctsung.github.io/
 ├── public/                  # Static assets served as-is
 │   ├── blogs/               # Blog posts as Markdown (e.g. 20240508_consecutive-numbers-in-sql.md)
-│   │   └── manifest.json    # List of post slugs — update when adding a new post
+│   │   └── manifest.json    # List of post slugs — update manually for new posts; auto-updated by publish:obsidian
 │   ├── img/
 │   │   └── blog/            # Blog images organized by slug
 │   └── doc/
 │       └── resume.pdf
+├── scripts/               # One-off scripts
+│   └── publish-obsidian-posts.mjs
 ├── src/
 │   ├── components/          # Reusable UI (Header, Footer, CatRunner, ScrollToTop, etc.)
 │   ├── pages/               # One component per page
@@ -65,8 +67,7 @@ tctsung.github.io/
 │   │   └── Vlog.jsx
 │   ├── data/                # JSON data files -- the single source of truth for content
 │   │   ├── vlogs.json
-│   │   ├── resume.json
-│   │   └── projects.json    # Backup only — not rendered; schema: project_name, summary, demo_link, github_link
+│   │   └── resume.json
 │   ├── assets/              # Images, SVGs
 │   ├── styles/              # CSS files
 │   ├── App.jsx              # Router + layout + shared route behavior
@@ -106,11 +107,16 @@ Global navigation:
 
 Blog posts live in `public/blogs/` as Markdown files. Never hardcode blog content in JSX.
 
-- Naming: `YYYYMMDD_title-in-kebab-case.md` — date is parsed from the filename
-- Each `.md` contains tags (`[tags: ...]`) and a summary above the `---` separator
+- Naming: `YYYYMMDD_title-in-kebab-case.md`
+- YAML frontmatter: `title`, `date`, `tags`, `summary`
 - Images go in `public/img/blog/<slug>/`
 - When adding a new post, add its slug to `public/blogs/manifest.json`
 - Comments powered by Giscus (GitHub Discussions), config in `src/pages/BlogPost.jsx`
+- Selected Obsidian notes can be published programmatically:
+  - Add an entry to `docs/obsidian-posts.json` — `slug` is the clean kebab name (no date prefix)
+  - Run `npm run publish:obsidian`
+  - The script auto-prepends `YYYYMMDD_` from the `date` field to the slug for the filename and manifest
+  - Commit the generated markdown in `public/blogs/` and copied assets in `public/img/blog/`
 
 For the full blog format guide, see `docs/blog-format.md`.
 

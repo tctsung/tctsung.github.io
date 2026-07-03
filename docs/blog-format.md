@@ -9,27 +9,27 @@ Documents the blog markdown format, naming conventions, and how to add new posts
 
 - Blog posts live in `public/blogs/` as `.md` files
 - Naming: `YYYYMMDD_title-in-kebab-case.md` (e.g. `20240508_consecutive-numbers-in-sql.md`)
-- Date and title are parsed from the filename automatically
 
 ## Markdown Structure
 
-Every blog post must follow this exact structure:
+Prefer YAML frontmatter for new posts:
 
-```
-# Post Title
-[tags: tag1, tag2, tag3]
-
-Summary text shown on the blog home page preview.
-
+```md
+---
+title: Post Title
+date: 2026-02-19
+tags: [tag1, tag2, tag3]
+summary: Summary text shown on the blog home page preview.
 ---
 
 Full blog content starts here.
 ```
 
-- **Line 1**: `# Title` — becomes the post title
-- **Line 2**: `[tags: ...]` — comma-separated tags for filtering (e.g. `tutorial, SQL, LeetCode`)
-- **Between tags and `---`**: plain text summary for the blog home page
-- **After `---`**: full post body with markdown rendering
+- **YAML `title`**: becomes the post title
+- **YAML `date`**: shown on the post and blog index
+- **YAML `tags`**: used for filtering
+- **YAML `summary`**: shown on the blog home page preview
+- **After frontmatter**: full post body with markdown rendering
 
 ## Supported Markdown Features
 
@@ -38,6 +38,7 @@ Full blog content starts here.
 - Fenced code blocks with syntax highlighting (via `react-syntax-highlighter`)
 - Inline HTML (via `rehype-raw`)
 - Images
+- Heading anchors for `##` through `#####`
 
 ## Images
 
@@ -57,6 +58,23 @@ Full blog content starts here.
   { "slug": "20240508_consecutive-numbers-in-sql" }
 ]
 ```
+
+## Publishing Obsidian Notes
+
+Selected Obsidian notes can be published programmatically.
+
+1. Add an entry to `docs/obsidian-posts.json`
+2. Run `npm run publish:obsidian`
+3. Commit the generated files in `public/blogs/` and `public/img/blog/`
+
+The importer:
+
+- strips Obsidian frontmatter
+- writes website YAML frontmatter
+- converts `[[#Heading]]` links to heading anchors
+- converts unknown `[[Wiki Links]]` to plain text
+- copies referenced `![[image.png]]` assets into the matching blog image folder
+- renames images according to the registry when a mapping is provided
 
 ## Comments
 

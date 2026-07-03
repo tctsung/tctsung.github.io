@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "publish:obsidian": "node scripts/publish-obsidian-posts.mjs",
     "build": "vite build",
     "preview": "vite preview"
   },

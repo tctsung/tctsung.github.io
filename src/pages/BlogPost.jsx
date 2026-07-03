@@ -8,6 +8,7 @@ import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import sql from 'react-syntax-highlighter/dist/esm/languages/prism/sql'
 import python from 'react-syntax-highlighter/dist/esm/languages/prism/python'
+import { parseBlogPost, slugifyHeading } from '../utils/blogMeta'
 
 SyntaxHighlighter.registerLanguage('sql', sql)
 SyntaxHighlighter.registerLanguage('python', python)
@@ -23,7 +24,7 @@ export default function BlogPost() {
     fetch(`${import.meta.env.BASE_URL}blogs/${slug}.md`)
       .then(r => r.text())
       .then(text => {
-        const { title, summary, date, body } = parsePost(text, slug)
+        const { title, summary, date, body } = parseBlogPost(text, slug)
         setMeta({ title, summary, date })
         setContent(body)
       })
@@ -66,6 +67,10 @@ export default function BlogPost() {
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
             components={{
+              h2: Heading('h2'),
+              h3: Heading('h3'),
+              h4: Heading('h4'),
+              h5: Heading('h5'),
               code({ inline, className, children, ...props }) {
                 const match = /language-(\w+)/.exec(className || '')
                 return !inline && match ? (
@@ -87,36 +92,17 @@ export default function BlogPost() {
   )
 }
 
-/* Split markdown into meta (title, tags, summary above ---) and body (below ---) */
-function parsePost(md, slug) {
-  const lines = md.split('\n')
-  let title = slug, tags = [], summaryLines = [], bodyStart = 0, titleFound = false
-
-  for (let i = 0; i < lines.length; i++) {
-    const trimmed = lines[i].trim()
-    if (!titleFound && trimmed.startsWith('# ')) {
-      title = trimmed.replace(/^#\s+/, '')
-      titleFound = true
-      continue
-    }
-    if (titleFound && trimmed === '---') {
-      bodyStart = i + 1
-      break
-    }
-    if (titleFound) {
-      const tagMatch = trimmed.match(/^\[tags:\s*(.+)\]$/)
-      if (tagMatch) {
-        tags = tagMatch[1].split(',').map(t => t.trim()).filter(Boolean)
-        continue
-      }
-      if (trimmed) summaryLines.push(trimmed)
-    }
+function Heading(TagName) {
+  return function MarkdownHeading({ children, ...props }) {
+    const text = collectText(children)
+    const id = slugifyHeading(text)
+    return <TagName id={id} {...props}>{children}</TagName>
   }
+}
 
-  const dateStr = slug.match(/^(\d{4})(\d{2})(\d{2})/)
-  const date = dateStr
-    ? new Date(+dateStr[1], +dateStr[2] - 1, +dateStr[3]).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
-    : ''
-
-  return { title, tags, summary: summaryLines.join(' '), date, body: lines.slice(bodyStart).join('\n') }
+function collectText(children) {
+  if (typeof children === 'string') return children
+  if (Array.isArray(children)) return children.map(collectText).join('')
+  if (children?.props?.children) return collectText(children.props.children)
+  return ''
 }
